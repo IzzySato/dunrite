@@ -1,0 +1,30 @@
+<%- include('partials/head')%>
+<section>
+  <div id="loginForm" class="form">
+    <img class="logo" src="/images/logo.png" alt="logo">
+    <div id="loginDiv">
+      <h2 id="sectionTitle">Login</h2>
+      <div class="inputDiv">
+        <label for="username"></label>
+        <input id="username" class="inputs" type="text" name="username" placeholder="email">
+      </div>
+      <div class="inputDiv">
+        <label for="password"></label>
+        <input id="password" class="inputs" type="text" name="password" placeholder="password">
+      </div>
+      <button id="loginButton" class="btn">Login</button>
+      <a id="newUserButton" href="/register">New user? register</a>
+    </div>
+  </div>
+  <div id="signinWithSocial">
+    <div id="google" class="btn socialBtn">
+      <i class="fab fa-google icon"></i>
+      <p class="buttonTitle">Login with Google</p>
+    </div>
+    <div id="facebook" class="btn socialBtn">
+      <i class="fab fa-facebook-square icon"></i>
+      <p class="buttonTitle">Login with facebook</p>
+    </div>
+  </div>
+</section>
+<%- include('partials/footer') %>

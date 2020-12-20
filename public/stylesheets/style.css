@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Source+Sans+Pro:wght@200&display=swap');
+:root{
+  --main-color: rgb(78, 110, 214);
+  --sub-color:rgb(64, 90, 175);
+  --font-main-color: rgb(255, 255, 255);
+  --font-sub-color: rgb(22, 22, 22);
+  --google-color: #DB4437;
+  --google-hover-color:  #852820;
+  --facebook-color: #3b5998;
+  --facebook-hover-color: #213257;
+  --btn-color: rgb(58, 80, 114);
+  --btn-hover-color: rgb(24, 33, 46);
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: var(--background-color);
+  padding: 5%;
+  font-size: 15pt;
+  color: var(--font-main-color);
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+}
+
+li{
+  list-style: none;
+  margin: 0;
+}
+
+/* common style */
+.btn{
+  background-color: var(--btn-color);
+  padding: 1.6% 5%;
+  font-size: 0.8em;
+  border: none;
+  border-radius: 6px;
+  color: var(--font-main-color);
+  text-transform: uppercase;
+}
+
+.btn:hover{
+  cursor: pointer;
+  background-color: var(--btn-hover-color);
+}
+
+::placeholder{
+  padding-left: 15px;
+}
+
+.subTitle{
+  color: var(--font-sub-color)
+}
+
+/* index (login page) */
+
+.form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color);
+  padding: 2% 0 5% 0;
+  position: relative;
+  border-radius: 8px;
+}
+
+.logo{
+  position: absolute;
+  left: 5%;
+  top: 8%;
+}
+
+#sectionTitle{
+  font-size: 1.8em;
+  margin-bottom: 4%;
+}
+
+.lablels{
+  margin-bottom: 25px;
+}
+.inputs{
+  width: 500px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 25px;
+}
+
+#newUserButton{
+  margin-top: 15px;
+  display: block;
+  color: var(--font-main-color);
+}
+
+#signinWithSocial{
+  margin-top: 10%;
+}
+
+.socialBtn{
+  margin: 4% 30%;
+  padding: 1% 4%;
+  border-radius: 6px;
+  position: relative;
+}
+
+#google{
+  background-color: var(--google-color);
+}
+
+#google:hover{
+  background-color: var(--google-hover-color);
+}
+
+#facebook{
+  background-color: var(--facebook-color);
+}
+
+#facebook:hover{
+  background-color: var(--facebook-hover-color);
+}
+
+.buttonTitle{
+  display: inline;
+  padding-left: 15px;
+}
+
+.icon{
+  font-size: 1.3em;
+  position: absolute;
+  left: 3%;
+}
+
+.fa-facebook-square{
+  font-size: 1.5em;
+}
+
+/* register page */
+
+#registerForm{
+  background-color: var(--sub-color);
+}
+
+/* customer page */
+
+.nav{
+  margin-bottom: 3%;
+  background-color: var(--main-color);
+  padding: 1.3%;
+  border-radius: 8px;
+}
+
+.navLi{
+  display: inline;
+  padding-right: 10px;
+}
+
+.navLink{
+  color: var(--font-main-color);
+  text-decoration: none;
+  padding: 1.3%;
+}
+
+.navLink:hover{
+  background-color: var(--sub-color);
+}
+
+#searchDiv{
+  padding: 2% 5%;
+  border-radius: 8px;
+  position: relative;
+}
+
+.fa-search{
+  font-size: 1.4em;
+  color: var(--main-color);
+  position: absolute;
+  top: 36%;
+  left: 2%;
+}
+
+#searchInput{
+  border: 1px solid black;
+}
+
+#tableHeader{
+  background-color: var(--sub-color);
+  color: var(--font-main-color);
+  padding: 1% 0;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.col{
+  border-right: 1px solid white;
+}
+
+#dataDiv{
+  margin-top: 5%;
+}
+
+.custmerData{
+  color: var(--font-sub-color);
+  text-align: center;
+}
+
+#tableHeader, .custmerData{
+  display: grid;
+  grid-template-columns: 19% 19% 15% 27% 20% ;
+}
+
+#searchInput{
+  margin-bottom: 0;
+}
+
+.customerPageIcon{
+  font-size: 1.4em;
+  margin-left: 10px;
+}
+
+/* addCustomer page */
+
+#addCustomerForm{
+  background-color: var(--main-color);
+  padding: 5%;
+  border-radius: 8px;
+}
+
+.cusInput{
+  margin-left: 20px;
+}
+
+#comments{
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+.inoutSectionTitle{
+  border-bottom-style: solid; 
+}
+
+#newCustomerButton{
+  margin-top: 5%;
+}
+
+/* customerDetail */
+
+#customerDetailDiv{
+  color: var(--font-sub-color);
+}
