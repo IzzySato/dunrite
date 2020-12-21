@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
       else{
         req.passport.authenticate('local')(req, res, () => {
           console.log('index post');
-          res.json({url: '/customer'});
+          res.json({url: '/customerList'});
         });
       }
     });

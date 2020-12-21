@@ -2,17 +2,19 @@
 <div>
   <ul class="nav">
     <a class="navLink" href="/logout"><li class="navLi logout">Logout</li></a>
-    <a class="navLink" href="customer"><li class="navLi">Customer List</li></a>
+    <a class="navLink" href="customerList"><li class="navLi">Customer List</li></a>
   </ul>
 </div>
 <h2 class="subTitle">Create a new Customer</h2>
 <div id="addCustomerForm">
   <label for="customerFirstName">First Name</label>
-  <input id="customerFirstName" class="inputs cusInput" type="text" name="customerFirstName" placeholder="first name"><br>
+  <input id="customerFirstName" class="inputs cusInput" type="text" name="customerFirstName" placeholder="first name" required><br>
   <label for="customerLastName">Last Name</label>
-  <input id="customerLastName" class="inputs cusInput" type="text" name="customerLastName" placeholder="last name"><br>
+  <input id="customerLastName" class="inputs cusInput" type="text" name="customerLastName" placeholder="last name" required><br>
   <label for="phone">Phone Number</label>
-  <input id="phone" class="inputs cusInput" type="text" name="phone" placeholder="e.g. 6041231234">
+  <input id="phone" class="inputs cusInput" type="tel" name="phone" placeholder="e.g. 6041231234" required><br>
+  <label for="email">email</label>
+  <input id="email" class="inputs cusInput" type="email" name="email" placeholder="e.g. example@example.com">
   <h3 class="inoutSectionTitle">Address</h3>
   <label for="street">Street</label>
   <input id="street" class="inputs cusInput" type="text" name="street" placeholder="e.g. 123 main street"><br>

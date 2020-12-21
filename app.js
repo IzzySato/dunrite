@@ -12,16 +12,23 @@ const passportLocalMongoose = require('passport-local-mongoose');
 // use for google signin
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
+//use for facebook
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register');
-const customerRouter = require('./routes/customer');
+const customerRouter = require('./routes/customerList');
 const addCustomerRouter = require('./routes/addCustomer');
 const customerDetailRouter = require('./routes/customerDetail');
 const logoutRouter = require('./routes/logout');
 
 const app = express();
+
+const { 
+  CALLBACK_DOMAIN = 'www.dunrite-clients.com',
+  PROTOCOL = 'https'
+ } = process.env;
 
 app.use(session({
   secret: 'Our littee secret.',
@@ -40,11 +47,25 @@ mongoose.connect('mongodb://localhost:27017/userDB', {
 mongoose.set('useCreateIndex', true);
 
 const userSchema = new mongoose.Schema({
+  userFirstName: String,
+  userLastName: String,
   email: String,
-  password: String,
-  googleId: String,
-  facebookId: String
+  password: String
 });
+
+// const customerSchema = new mongoose.Schema({
+//   firstName: String,
+//   lastName: String,
+//   phoneNumber: Number,
+//   email: String,
+//   street: String,
+//   city: String,
+//   postcode: String,
+//   country: String,
+//   lastVisitedDate: String,
+//   lastVisitedWork: String,
+//   comments: String
+// });
 
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
@@ -65,13 +86,38 @@ passport.deserializeUser((id, done) => {
 passport.use(new GoogleStrategy({
   clientID: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
-  callbackURL: 'http://localhost:3000/auth/google/customer',
+  callbackURL: `${PROTOCOL}://${CALLBACK_DOMAIN}/auth/google/customerList`,
   userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
 },
 function(token, tokenSecret, profile, done) {
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+  //console.log(JSON.stringify(profile));
+    User.findOrCreate({ userFirstName: profile.name.givenName, 
+                        userLastName: profile.name.familyName, 
+                        username: profile.id, 
+                        email: profile.emails[0].value 
+                      }, function (err, user) {
       return done(err, user);
     });
+}
+));
+
+passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_APP_ID,
+  clientSecret: process.env.FACEBOOK_APP_SECRET,
+  callbackURL: `${PROTOCOL}://${CALLBACK_DOMAIN}/auth/facebook/customerList`
+},
+function(accessToken, refreshToken, profile, done) {
+  // console.log(JSON.stringify(profile));
+  const names =  profile._json.name.split(' ');
+  const fName = names[0];
+  const lName = names[1];
+  User.findOrCreate({ userFirstName: fName,
+                      userLastName: lName,
+                      username: profile.id
+                    }, function(err, user) {
+    if (err) { return done(err); }
+    done(null, user);
+  });
 }
 ));
 
@@ -95,20 +141,28 @@ app.use('/', (req, res, next) => {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/register', registerRouter);
-app.use('/customer', customerRouter);
+app.use('/customerList', customerRouter);
 app.use('/addCustomer', addCustomerRouter);
 app.use('/customerDetail', customerDetailRouter);
 app.use('/logout', logoutRouter);
 
 //google authentication
 app.get('/auth/google', 
-passport.authenticate('google', {scope: ['profile']}));
+passport.authenticate('google', {scope: ['profile', 'email']}));
 
-app.get('/auth/google/customer', 
+app.get('/auth/google/customerList', 
 passport.authenticate('google', {failureRedirect: '/'}),
 (req, res) => {
-  res.redirect('/customer');
+  res.redirect('/customerList');
 });
+
+//facebook authentication
+app.get('/auth/facebook',
+  passport.authenticate('facebook', { scope: 'public_profile,email', return_scopes: true}));
+
+app.get('/auth/facebook/customerList',
+  passport.authenticate('facebook', { successRedirect: '/customerList',
+                                      failureRedirect: '/' }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

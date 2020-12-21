@@ -6,17 +6,20 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log('new user req');
-  const { body: { username, password }} = req;
-  console.log(`New register for ${username} / ${password}`);
+  const { body: { userFirstName, userLastName, username, password }} = req;
+  console.log(`New register for ${userFirstName} / ${userLastName} / ${username} / ${password}`);
   try {
-    req.User.register({ username }, password, (err, user) => {
+    req.User.register({ userFirstName,
+                        userLastName,
+                        username, 
+                        email: username
+                      }, password, (err, user) => {
       if(err){
         console.log(`Error ${err}`);
         res.redirect('/register');
       }else{
         req.passport.authenticate('local')(req, res, () => {
-        res.json({url: '/customer'});
+        res.json({url: '/customerList'});
         });
       }
     });    

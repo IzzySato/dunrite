@@ -18,8 +18,10 @@ const login = (username, password) => {
     }) => location.href = url);
 };
 
-const register = (username, password) => {
+const register = (userFirstName, userLastName, username, password) => {
   const newUser = {
+    userFirstName,
+    userLastName,
     username,
     password
   };
@@ -44,9 +46,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (registerButton) {
     registerButton.addEventListener('click', () => {
+      const userFirstName = document.querySelector('#userFirstName').value;
+      const userLastName = document.querySelector('#userLastName').value;
       const username = document.querySelector('#newUsername').value;
       const password = document.querySelector('#newPassword').value;
-      register(username, password);
+      register(userFirstName, userLastName, username, password);
     });
   };
 
