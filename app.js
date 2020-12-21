@@ -9,8 +9,9 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
-//const GoogleStrategy = require('passport-google-oauth20').Strategy;
-//const findOrCreate = require('mongoose-findorcreate');
+// use for google signin
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const findOrCreate = require('mongoose-findorcreate');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -46,7 +47,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.plugin(passportLocalMongoose);
-// userSchema.plugin(findOrCreate);
+userSchema.plugin(findOrCreate);
 
 const User = mongoose.model('User', userSchema);
 
@@ -54,11 +55,25 @@ passport.use(User.createStrategy());
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
+
 passport.deserializeUser((id, done) => {
   User.findById(id, (err, user) => {
     done(err, user);
   });
 });
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.CLIENT_SECRET,
+  callbackURL: 'http://localhost:3000/auth/google/customer',
+  userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
+},
+function(token, tokenSecret, profile, done) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+}
+));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -76,6 +91,7 @@ app.use('/', (req, res, next) => {
   next();
 });
 
+//use all routers
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/register', registerRouter);
@@ -83,6 +99,16 @@ app.use('/customer', customerRouter);
 app.use('/addCustomer', addCustomerRouter);
 app.use('/customerDetail', customerDetailRouter);
 app.use('/logout', logoutRouter);
+
+//google authentication
+app.get('/auth/google', 
+passport.authenticate('google', {scope: ['profile']}));
+
+app.get('/auth/google/customer', 
+passport.authenticate('google', {failureRedirect: '/'}),
+(req, res) => {
+  res.redirect('/customer');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -124,6 +124,8 @@ li{
 .buttonTitle{
   display: inline;
   padding-left: 15px;
+  text-decoration: none;
+  color: var(--font-main-color);
 }
 
 .icon{
