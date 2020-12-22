@@ -53,24 +53,26 @@ const userSchema = new mongoose.Schema({
   password: String
 });
 
-// const customerSchema = new mongoose.Schema({
-//   firstName: String,
-//   lastName: String,
-//   phoneNumber: Number,
-//   email: String,
-//   street: String,
-//   city: String,
-//   postcode: String,
-//   country: String,
-//   lastVisitedDate: String,
-//   lastVisitedWork: String,
-//   comments: String
-// });
+
+const customerSchema = new mongoose.Schema({
+  customerFirstName: String,
+  customerLastName: String,
+  phone: Number,
+  email: String,
+  street: String,
+  city: String,
+  postcode: String,
+  country: String,
+  date: String,
+  work: String,
+  comments: String
+});
 
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
 const User = mongoose.model('User', userSchema);
+const Customer = mongoose.model('Customer', customerSchema);
 
 passport.use(User.createStrategy());
 passport.serializeUser((user, done) => {
@@ -133,6 +135,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', (req, res, next) => {
   req.User = User;
+  req.Customer = Customer;
   req.passport = passport;
   next();
 });

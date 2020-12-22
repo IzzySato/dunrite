@@ -209,7 +209,7 @@ li{
 
 #tableHeader, .custmerData{
   display: grid;
-  grid-template-columns: 19% 19% 15% 27% 20% ;
+  grid-template-columns: 17% 17% 13% 10% 25% 18% ;
 }
 
 #searchInput{

@@ -2,22 +2,12 @@
 <div>
   <ul class="nav">
     <a class="navLink" href="/"><li class="navLi">Logout</li></a>
-    <a class="navLink" href="customer"><li class="navLi">Customer List</li></a>
+    <a class="navLink" href="/customerList"><li class="navLi">Customer List</li></a>
   </ul>
 </div>
 <div id="customerDetailDiv">
   <h2>Customer Detail</h2>
-  <div>
-    <h3>CustomerID:</h3>
-    <h3>First Name:</h3>
-    <h3>Last Name:</h3>
-    <h3>Phone Number:</h3>
-    <h3>Street:</h3>
-    <h3>City:</h3>
-    <h3>Postcode:</h3>
-    <h3>Country:</h3>
-    <h3>History:</h3>
-    <h3>Comments:</h3>
+  <div id="detailDiv" data-id="<%-id%>">
   </div>
 </div>
 <%- include('partials/footer') %>
