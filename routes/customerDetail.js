@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 // GET loading customerDetailPage
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   if(req.isAuthenticated()){
     const { id } = req.params;
-    res.render('customerDetail', {script: 'customerDetail', id});
+    const data = await req.Customer.findOne({_id: id});
+    res.render('customerDetail', {script: 'customerDetail', data});
   }else{
     console.log('You need to login');
     res.redirect('/');
@@ -16,7 +17,7 @@ router.get('/:id', (req, res) => {
 router.get('/data/:id', async (req, res) => {
   if(req.isAuthenticated){
     const { id } = req.params;
-    const data = await req.Customer.find({_id: id});
+    const data = await req.Customer.findOne({_id: id});
     res.json(data);
   }else{
     console.log('not authenticated');

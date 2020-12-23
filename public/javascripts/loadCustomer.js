@@ -11,19 +11,25 @@ const customerTemplate = ({
 }) =>
   `    
   <ul class="custmerData">
-  <a href="customerDetail/${_id}"><li class="data customerLi" data-id="${_id}">${_id}</li></a>
+  <li class="data cusID">${_id}</li>
   <li class="data">${customerFirstName} ${customerLastName}</li>
   <li class="data">${email}</li>
   <li class="data">${phone}</li>
-  <li class="data">${street} ${city} ${postcode} ${country}</li>
+  <li class="data cusAddress">${street} ${city} ${postcode} ${country}</li>
   <li class="data">
     <div>
-      <i class="fas fa-edit customerPageIcon"></i>
-      <i class="fas fa-trash-alt customerPageIcon"></i>
-      <i class="fas fa-star customerPageIcon"></i>
+      <i class="fas fa-edit customerPageIcon" data-id="${_id}"></i>
+      <i class="fas fa-trash-alt customerPageIcon" data-id="${_id}"></i>
+      <a class="detailBtn" href="customerDetail/${_id}" data-id="${_id}">Details</a>
     </div>
   </li>
 </ul>`;
+
+const processClick = (target) => {
+  const {dataset: {id}} = target;
+  if(target.matches('.fa-trash-alt')) location.href=`/customerList/data/delete/${id}`;
+  if(target.matches('.fa-edit')) location.href=`/addEditCustomer/${id}`;
+};
 
 const loadCustomer = () => {
   fetch('/customerList/data')
@@ -32,6 +38,8 @@ const loadCustomer = () => {
     const html = data.map(person => customerTemplate(person)).join('');
     const div = document.querySelector('#dataDiv');
     div.innerHTML = html;
+
+    document.addEventListener('click', ({target}) => processClick(target));
   });
 };
 

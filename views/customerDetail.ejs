@@ -1,13 +1,47 @@
 <%- include('partials/head')%>
+<%
+  const dataID = () => ` data-id="${data._id}"`;
+%>
 <div>
   <ul class="nav">
-    <a class="navLink" href="/"><li class="navLi">Logout</li></a>
-    <a class="navLink" href="/customerList"><li class="navLi">Customer List</li></a>
+    <a class="navLink" href="/">
+      <li class="navLi">Logout</li>
+    </a>
+    <a class="navLink" href="/customerList">
+      <li class="navLi">Customer List</li>
+    </a>
   </ul>
 </div>
 <div id="customerDetailDiv">
-  <h2>Customer Detail</h2>
-  <div id="detailDiv" data-id="<%-id%>">
+  <h2>Customer Details</h2>
+  <div id="cusDetailIcons">
+    <i class="fas fa-edit customerPageIcon" <%- dataID()%>>EDIT</i>
+    <i class="fas fa-trash-alt customerPageIcon" <%- dataID()%>>DELETE</i>
+  </div>
+  <div id="detailDiv" <%- dataID()%>>
+    <div>
+      <h3 class="cusDetailHeader">CustomerID:</h3>
+      <p class="cusDetailData"><%- data._id%></p>
+      <h3 class="cusDetailHeader">First Name:</h3>
+      <p class="cusDetailData"><%- data.customerFirstName%></p>
+      <h3 class="cusDetailHeader">Last Name:</h3>
+      <p class="cusDetailData"><%- data.customerLastName%></p>
+      <h3 class="cusDetailHeader">Phone Number:</h3>
+      <p class="cusDetailData"><%- data.phone%></p>
+      <h3 class="cusDetailHeader">email:</h3>
+      <p class="cusDetailData"><%- data.email%></p>
+      <h3 class="cusDetailHeader">Address:</h3>
+      <p class="cusDetailData"><%- data.street %> <%- data.city %> <%-data.postcode %> <%-data.country%></p>
+    </div>
+    <div id="work">
+      <button class="btn">ADD New History</button>
+      <h3 class="cusDetailHeader">Last Visited Date:</h3>
+      <p class="cusDetailData"><%- data.date%></p>
+      <h3 class="cusDetailHeader">Last Visited work:</h3>
+      <p class="cusDetailData"><%- data.work%></p>
+      <h3 class="cusDetailHeader">Comments:</h3>
+      <p class="cusDetailData"><%- data.comments%></p>
+    </div>
   </div>
 </div>
 <%- include('partials/footer') %>

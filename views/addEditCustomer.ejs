@@ -1,0 +1,55 @@
+<%- include('partials/head')%>
+
+<% const {
+  id = 'new',
+  customerFirstName = '',
+    customerLastName = '',
+    phone = '',
+    email = '',
+    street = '',
+    city = '',
+    postcode = '',
+    country = '',
+    date = '',
+    work = '',
+    comments= ''
+} = data;
+ %>
+ 
+<div>
+  <ul class="nav">
+    <a class="navLink" href="/logout"><li class="navLi logout">Logout</li></a>
+    <a class="navLink" href="/customerList"><li class="navLi">Customer List</li></a>
+  </ul>
+</div>
+<h2 id="form" data-id="<%- id%>" class="subTitle"><%- subTitle %></h2>
+<div id="addCustomerForm">
+  <label for="customerFirstName">First Name</label>
+  <input value="<%- customerFirstName%>" id="customerFirstName" class="inputs cusInput" type="text" name="customerFirstName" placeholder="first name" required><br>
+  <label for="customerLastName">Last Name</label>
+  <input value="<%- customerLastName%>" id="customerLastName" class="inputs cusInput" type="text" name="customerLastName" placeholder="last name" required><br>
+  <label for="phone">Phone Number</label>
+  <input value="<%- phone%>" id="phone" class="inputs cusInput" type="tel" name="phone" placeholder="e.g. 6041231234" required><br>
+  <label for="email">email</label>
+  <input value="<%- email%>" id="email" class="inputs cusInput" type="email" name="email" placeholder="e.g. example@example.com">
+  <h3 class="inoutSectionTitle">Address</h3>
+  <label for="street">Street</label>
+  <input value="<%- street%>" id="street" class="inputs cusInput" type="text" name="street" placeholder="e.g. 123 main street"><br>
+  <label for="city">City</label>
+  <input value="<%- city%>" id="city" class="inputs cusInput" type="text" name="city" placeholder="e.g. Vancouver"><br>
+  <label for="postcode">Postcode</label>
+  <input value="<%- postcode%>" id="postcode" class="inputs cusInput" type="text" name="postcode" placeholder="e.g. V1A 3B6"><br>
+  <label for="country">Country</label>
+  <input value="<%- country%>" id="country" class="inputs cusInput" type="text" name="country" placeholder="e.g. canada"><br>
+  
+  <h3 class="inoutSectionTitle">History</h3>
+  <label for="date">Last Visited Date</label>
+  <input id="date" class="inputs cusInput" type="date" name="date"><br>
+  <label for="work">Last Visited Work</label>
+  <input id="work" class="inputs cusInput" type="text" name="work" placeholder="e.g. Fixed pump"><br>
+  
+  <label for="comments">Comments</label><br>
+  <textarea name="comments" id="comments" cols="100" rows="10"></textarea><br>
+  <button id="newCustomerButton" class="btn">Submit</button>
+</div>
+<%- include('partials/footer') %>

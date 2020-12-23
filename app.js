@@ -19,7 +19,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register');
 const customerRouter = require('./routes/customerList');
-const addCustomerRouter = require('./routes/addCustomer');
+const addEditCustomerRouter = require('./routes/addEditCustomer');
 const customerDetailRouter = require('./routes/customerDetail');
 const logoutRouter = require('./routes/logout');
 
@@ -145,7 +145,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/register', registerRouter);
 app.use('/customerList', customerRouter);
-app.use('/addCustomer', addCustomerRouter);
+app.use('/addEditCustomer', addEditCustomerRouter);
 app.use('/customerDetail', customerDetailRouter);
 app.use('/logout', logoutRouter);
 

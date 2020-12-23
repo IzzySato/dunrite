@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
+//GET load register page
 router.get('/', (req, res) => {
   res.render('register', {script: 'register'});
 });
 
+//POST register a new user
 router.post('/', (req, res) => {
   const { body: { userFirstName, userLastName, username, password }} = req;
   console.log(`New register for ${userFirstName} / ${userLastName} / ${username} / ${password}`);

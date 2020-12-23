@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Source+Sans+Pro:wght@200&display=swap');
 :root{
   --main-color: rgb(78, 110, 214);
   --sub-color:rgb(64, 90, 175);
+  --light-main-color: rgb(175, 192, 250);
   --font-main-color: rgb(255, 255, 255);
   --font-sub-color: rgb(22, 22, 22);
+  --font-highlight-color: rgb(6, 56, 114);
   --google-color: #DB4437;
   --google-hover-color:  #852820;
   --facebook-color: #3b5998;
@@ -18,6 +21,10 @@ body {
   padding: 5%;
   font-size: 15pt;
   color: var(--font-main-color);
+}
+
+i{
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 ul{
@@ -144,7 +151,7 @@ li{
   background-color: var(--sub-color);
 }
 
-/* customer page */
+/* customerList page */
 
 .nav{
   margin-bottom: 3%;
@@ -204,12 +211,16 @@ li{
 
 .custmerData{
   color: var(--font-sub-color);
-  text-align: center;
+  margin-bottom: 2%;
 }
 
 #tableHeader, .custmerData{
   display: grid;
-  grid-template-columns: 17% 17% 13% 10% 25% 18% ;
+  grid-template-columns: 17% 17% 18% 13% 25% 10% ;
+}
+
+.cusID, .cusAddress{
+  font-size: 0.8em;
 }
 
 #searchInput{
@@ -217,8 +228,32 @@ li{
 }
 
 .customerPageIcon{
-  font-size: 1.4em;
-  margin-left: 10px;
+  font-size: 0.9em;
+  margin: 0 5px;
+  color: var(--main-color);
+  padding: 2px;
+  border-radius: 4px;
+}
+
+.customerPageIcon:hover{
+  cursor: pointer;
+  background-color: var(--btn-hover-color);
+  color: var(--font-main-color);
+}
+
+.detailBtn{
+  font-size: 0.7em;
+  text-decoration: none;
+  color: var(--font-main-color);
+  background-color: var(--main-color);
+  padding: 3px 4px;
+  border-radius: 8px;
+}
+
+.detailBtn:hover{
+  cursor: pointer;
+  background-color: var(--btn-hover-color);
+  color: var(--font-main-color);
 }
 
 /* addCustomer page */
@@ -250,4 +285,24 @@ li{
 
 #customerDetailDiv{
   color: var(--font-sub-color);
+}
+
+.cusDetailHeader{
+  font-size: 0.8em;
+}
+
+.cusDetailData{
+  color: var(--font-highlight-color);
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+#detailDiv{
+  display: grid;
+  grid-template-columns: 40% 60%;
+}
+
+#work{
+  background-color: var(--light-main-color);
+  padding: 3%;
+  border-radius: 8px;
 }

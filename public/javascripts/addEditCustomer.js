@@ -1,4 +1,5 @@
 const addCustomer = (
+  id,
   customerFirstName,
   customerLastName,
   phone,
@@ -10,7 +11,8 @@ const addCustomer = (
   date = '',
   work = '',
   comments = '') => {
-    const newCustomer = {
+    const customer = {
+      id,
       customerFirstName,
       customerLastName,
       phone,
@@ -24,9 +26,9 @@ const addCustomer = (
       comments
     };
 
-    fetch('/addCustomer', {
+    fetch('/addEditCustomer/add', {
       method: 'POST',
-      body: JSON.stringify(newCustomer),
+      body: JSON.stringify(customer),
       headers: {
         "Content-type": "application/json; charset=UTF-8"
       }
@@ -37,11 +39,14 @@ const addCustomer = (
     }) => location.href = url);
 };
 
+
 document.addEventListener('DOMContentLoaded', function () {
+
   const addCustomerButton = document.querySelector('#newCustomerButton');
 
   if(addCustomerButton){
     addCustomerButton.addEventListener('click', () => {
+      const id = document.querySelector('#form').dataset.id;
       const customerFirstName = document.querySelector('#customerFirstName').value;
       const customerLastName = document.querySelector('#customerLastName').value;
       const phone = document.querySelector('#phone').value;
@@ -55,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const comments = document.querySelector('#comments').value;
 
       addCustomer(
+        id,
         customerFirstName,
         customerLastName,
         phone,
