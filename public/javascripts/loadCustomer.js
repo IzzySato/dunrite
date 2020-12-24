@@ -18,8 +18,8 @@ const customerTemplate = ({
   <li class="data cusAddress">${street} ${city} ${postcode} ${country}</li>
   <li class="data">
     <div>
-      <i class="fas fa-edit customerPageIcon" data-id="${_id}"></i>
-      <i class="fas fa-trash-alt customerPageIcon" data-id="${_id}"></i>
+      <i class="fas fa-edit editCustomer customerPageIcon" data-id="${_id}"></i>
+      <i class="fas fa-trash-alt removeCustomer customerPageIcon" data-id="${_id}"></i>
       <a class="detailBtn" href="customerDetail/${_id}" data-id="${_id}">Details</a>
     </div>
   </li>
@@ -27,8 +27,8 @@ const customerTemplate = ({
 
 const processClick = (target) => {
   const {dataset: {id}} = target;
-  if(target.matches('.fa-trash-alt')) location.href=`/customerList/data/delete/${id}`;
-  if(target.matches('.fa-edit')) location.href=`/addEditCustomer/${id}`;
+  if(target.matches('.removeCustomer')) location.href=`/customerList/data/delete/${id}`;
+  if(target.matches('.editCustomer')) location.href=`/addEditCustomer/${id}`;
 };
 
 const loadCustomer = () => {

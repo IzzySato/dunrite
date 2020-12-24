@@ -11,9 +11,10 @@ const passport = require('passport');
 const passportLocalMongoose = require('passport-local-mongoose');
 // use for google signin
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-const findOrCreate = require('mongoose-findorcreate');
 //use for facebook
 const FacebookStrategy = require('passport-facebook').Strategy;
+
+const findOrCreate = require('mongoose-findorcreate');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -63,9 +64,18 @@ const customerSchema = new mongoose.Schema({
   city: String,
   postcode: String,
   country: String,
-  date: String,
-  work: String,
+  hottubModel: String,
+  history: [
+    {
+      date: {type: Date, default: Date.now},
+      service: String
+    }
+  ],
   comments: String
+});
+
+const productSchema = new mongoose.Schema({
+  model: [String]
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -73,6 +83,7 @@ userSchema.plugin(findOrCreate);
 
 const User = mongoose.model('User', userSchema);
 const Customer = mongoose.model('Customer', customerSchema);
+const Product = mongoose.model('Product', productSchema);
 
 passport.use(User.createStrategy());
 passport.serializeUser((user, done) => {
@@ -136,6 +147,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', (req, res, next) => {
   req.User = User;
   req.Customer = Customer;
+  req.Product = Product;
   req.passport = passport;
   next();
 });

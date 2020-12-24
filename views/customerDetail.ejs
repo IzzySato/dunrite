@@ -15,8 +15,8 @@
 <div id="customerDetailDiv">
   <h2>Customer Details</h2>
   <div id="cusDetailIcons">
-    <i class="fas fa-edit customerPageIcon" <%- dataID()%>>EDIT</i>
-    <i class="fas fa-trash-alt customerPageIcon" <%- dataID()%>>DELETE</i>
+    <i class="fas fa-edit editCustomer customerPageIcon" <%- dataID()%>>EDIT</i>
+    <i class="fas fa-trash-alt removeCustomer customerPageIcon" <%- dataID()%>>DELETE</i>
   </div>
   <div id="detailDiv" <%- dataID()%>>
     <div>
@@ -33,12 +33,14 @@
       <h3 class="cusDetailHeader">Address:</h3>
       <p class="cusDetailData"><%- data.street %> <%- data.city %> <%-data.postcode %> <%-data.country%></p>
     </div>
-    <div id="work">
+    <div id="workDiv">
+      <h3 class="cusDetailHeader">Hottub Model:</h3>
+      <p class="cusDetailData"><%- data.hottubModel%></p>
       <button class="btn">ADD New History</button>
       <h3 class="cusDetailHeader">Last Visited Date:</h3>
-      <p class="cusDetailData"><%- data.date%></p>
+      <p class="cusDetailData"><%- data.history[0].date%></p>
       <h3 class="cusDetailHeader">Last Visited work:</h3>
-      <p class="cusDetailData"><%- data.work%></p>
+      <p class="cusDetailData"><%- data.history[0].service%></p>
       <h3 class="cusDetailHeader">Comments:</h3>
       <p class="cusDetailData"><%- data.comments%></p>
     </div>

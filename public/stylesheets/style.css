@@ -4,6 +4,7 @@
   --main-color: rgb(78, 110, 214);
   --sub-color:rgb(64, 90, 175);
   --light-main-color: rgb(175, 192, 250);
+  --darker-main-color: rgb(37, 54, 107);
   --font-main-color: rgb(255, 255, 255);
   --font-sub-color: rgb(22, 22, 22);
   --font-highlight-color: rgb(6, 56, 114);
@@ -256,7 +257,7 @@ li{
   color: var(--font-main-color);
 }
 
-/* addCustomer page */
+/* addEditCustomer page */
 
 #addCustomerForm{
   background-color: var(--main-color);
@@ -281,6 +282,59 @@ li{
   margin-top: 5%;
 }
 
+#modelBtnDiv{
+  margin: 2% 0;
+}
+
+.modelText{
+  font-size: 0.8em;
+  text-decoration: underline;
+  margin-right: 1%;
+}
+
+.addEditBtn{
+    margin: 0 2% 0 1%;
+    border-radius: 8px;
+    padding: 3px 8px;
+    border: none;
+}
+
+.addEditBtn:hover{
+  background-color: var(--darker-main-color);
+  color: var(--font-main-color);
+}
+
+#addModelBtn:hover{
+  background-color: var(--main-color);
+}
+
+.addEditModelDiv{
+  background-color: var(--darker-main-color);
+  border-radius: 8px;
+  padding: 1% 2%;
+  margin-bottom: 2%;
+}
+
+.modelInputs{
+  margin: 10px 15px;
+}
+
+.modelIcon{
+  margin-left: 1%;
+}
+
+#addModelDiv{
+  display: none;
+}
+
+#editModelDiv{
+  display: none;
+}
+
+#editModelInputDiv{
+  display: none;
+}
+
 /* customerDetail */
 
 #customerDetailDiv{
@@ -301,7 +355,7 @@ li{
   grid-template-columns: 40% 60%;
 }
 
-#work{
+#workDiv{
   background-color: var(--light-main-color);
   padding: 3%;
   border-radius: 8px;

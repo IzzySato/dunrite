@@ -10,12 +10,13 @@
     city = '',
     postcode = '',
     country = '',
-    date = '',
-    work = '',
+    hottubModel = '',
+    history = [],
     comments= ''
 } = data;
+
  %>
- 
+
 <div>
   <ul class="nav">
     <a class="navLink" href="/logout"><li class="navLi logout">Logout</li></a>
@@ -42,7 +43,46 @@
   <label for="country">Country</label>
   <input value="<%- country%>" id="country" class="inputs cusInput" type="text" name="country" placeholder="e.g. canada"><br>
   
-  <h3 class="inoutSectionTitle">History</h3>
+  <h3 class="inoutSectionTitle">Work</h3>
+
+  <label for="model">hottub model</label>
+  <select name="model" id="model">
+    <option value="">Select a model</option>
+    <% product.forEach( (product) => {
+      product.model.forEach( (model) => { %>
+        <option value="<%- model%>"><%- model%></option> 
+      <%})
+      })%>
+  </select>
+
+  <div id="modelBtnDiv">
+    <span class="modelText">You cannot find a mode?</span>
+    <button id="addModelDivOpenBtn" class="addEditBtn">Add a New Model</button>
+    <span class="modelText">Edit or remove a model?</span>
+    <button id="editModelDivOpenBtn" class="addEditBtn">Edit/Remove</button>
+  </div>
+
+  <div id="addModelDiv" class="addEditModelDiv">
+    <label for="model">Model Name</label>
+    <input id="newModel" class="inputs cusInput modelInputs" type="text" name="model">
+    <button id="addModelBtn" class="addEditBtn">ADD</button>
+  </div>
+
+  <div id="editModelDiv" class="addEditModelDiv">
+    <div id="editModelInputDiv">
+      <label for="model">Model Name</label>
+      <input id="editModelInput" class="inputs cusInput modelInputs" type="text" name="model">
+      <button id="editModelBtn" class="addEditBtn">SUBMIT</button>
+    </div>
+
+    <ul>
+      <li>modelName
+        <i class="fas fa-edit modelEditIcon modelIcon"></i>
+        <i class="fas fa-trash-alt modelRemoveIcon modelIcon"></i>
+      </li>
+    </ul>
+  </div>
+
   <label for="date">Last Visited Date</label>
   <input id="date" class="inputs cusInput" type="date" name="date"><br>
   <label for="work">Last Visited Work</label>

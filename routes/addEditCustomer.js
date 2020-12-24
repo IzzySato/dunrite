@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 //GET load add a new customer form
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   if(req.isAuthenticated()){
-    res.render('addEditCustomer', {script: 'addEditCustomer', subTitle: 'Create a new Customer', data: {}});
+    const product = await req.Product.find();
+    res.render('addEditCustomer', {script: 'addEditCustomer', subTitle: 'Create a new Customer', data: {}, product, url: '/addEditCustomer'});
   }else{
     res.redirect('/');
   }
@@ -14,8 +15,9 @@ router.get('/', (req, res) => {
 router.get('/:id', async (req, res) => {
   if(req.isAuthenticated()){
     const {id} = req.params;
+    const product = await req.Product.find();
     const data = await req.Customer.findOne({_id: id});
-    res.render('addEditCustomer', {script: 'addEditCustomer', subTitle: 'Edit Customer', data});
+    res.render('addEditCustomer', {script: 'addEditCustomer', subTitle: 'Edit Customer', data, product});
   }else{
     res.redirect('/');
   }
@@ -33,8 +35,8 @@ router.post('/add', async (req, res) => {
     city,
     postcode,
     country,
-    date,
-    work,
+    hottubModel,
+    history,
     comments }
   } = req;
 
@@ -47,8 +49,8 @@ router.post('/add', async (req, res) => {
     city,
     postcode,
     country,
-    date,
-    work,
+    hottubModel,
+    history,
     comments
   };
 
@@ -67,8 +69,8 @@ router.post('/add', async (req, res) => {
           city,
           postcode,
           country,
-          date,
-          work,
+          hottubModel,
+          history,
           comments
         }
         )}
@@ -76,6 +78,18 @@ router.post('/add', async (req, res) => {
   }catch(err){
     console.log(err);
   };
+});
+
+//POST add a hottubModel to the product collection
+router.post('/hottubModel', async (req, res) => {
+  try{
+    const {body: {model}} = req;
+    // const newHottub = new req.Product({model});
+    // newHottub.save();
+    await req.Product.update({}, {$push: {model: [model]}});
+  }catch(err){
+    console.log(err);
+  }
 });
 
 module.exports = router;
