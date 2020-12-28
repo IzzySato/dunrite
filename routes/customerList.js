@@ -27,7 +27,7 @@ router.get('/data', async (req, res) => {
 router.get('/data/delete/:id', async (req, res) => {
   if(req.isAuthenticated){
     const { id } = req.params;
-    console.log(`Delete request received for - ${id}`);
+    //console.log(`Delete request received for - ${id}`);
     const data = await req.Customer.deleteOne({_id: id});
     res.render('customerList', {script: 'loadCustomer'});
   }else{

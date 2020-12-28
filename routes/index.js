@@ -8,7 +8,6 @@ router.get('/', (req, res, next) => {
 
 //POST login user
 router.post('/', (req, res) => {
-  console.log('login: ');
   const user = new req.User({
     username: req.body.username,
     password: req.body.password
@@ -18,7 +17,6 @@ router.post('/', (req, res) => {
       if(err) console.log(err);
       else{
         req.passport.authenticate('local')(req, res, () => {
-          console.log('index post');
           res.json({url: '/customerList'});
         });
       }

@@ -1,0 +1,58 @@
+<%- include('partials/head')%>
+<div class="headerDiv">
+  <img class="pageLogo" src="/images/logo.png" alt="logo">
+  <ul class="nav">
+    <a class="navLink" href="/logout"><li class="navLi logout">Logout</li></a>
+    <a class="navLink" href="/customerList"><li class="navLi">Customer List</li></a>
+    <a class="navLink" href="/addEditCustomer"><li class="navLi">Add New Customer</li></a>
+  </ul>
+</div>
+<h2 class="subTitle">Product Configuration</h2>
+<section id="configSection">
+  <div id="addModelBrandDiv" class="addEditModelDiv">
+    <section>
+      <div id="addModelDiv">
+        <h3>Add a new Model</h3>
+        <label for="brand">Brand Name</label>
+        <select id="brandNameSelect" name="brandName" class="brandSelect">
+          <!-- get data from client js -->
+        </select>
+        
+        <label class="modelLabel" for="model">Model Name</label>
+        <input id="newModel" class="inputs cusInput modelInputs" type="text" name="model">
+        <button id="addModelBtn" class="addEditBtn">Add Model</button>
+      </div>
+    </section>
+    <section>
+      <h3 id="newBrandH3">Add a new Brand</h3>
+      <label class="modelLabel" for="brand">Brand Name</label>
+        <input id="newBrand" class="inputs cusInput modelInputs" type="text" name="brandName">
+        <button id="addBrandBtn" class="addEditBtn">Add Brand</button>
+    </section>
+  </div>
+
+  <div id="editModelDiv" class="addEditModelDiv">
+    <h3>Edit or Remove Brand / Model</h3>
+    <div id="searchModelDiv">
+      <label for="seachModel">Seach Model</label>
+      <input id="seachModelInput" class="inputs cusInput modelInputs" type="text" name="searchModel" placeholder="Seach Model">
+      <button id="seachModelBtn" class="addEditBtn">Seach</button>
+    </div>
+    <div id="editModelInputDiv">
+      <label class="modelLabel" for="model"></label>
+      <input id="editModelInput" class="inputs cusInput modelInputs" type="text" name="model">
+      <button id="editModelBtn" class="addEditBtn">SUBMIT</button>
+    </div>
+
+    <h3>Brands</h3>
+    <ul id="brandUl">
+      <!-- data insert here from client js (addEditCustomer.js) -->
+    </ul>
+    <h3>Models</h3>
+    <ul id="modelsUl">
+      <!-- data insert here from client js (addEditCustomer.js) -->
+    </ul>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

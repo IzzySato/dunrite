@@ -62,8 +62,45 @@ li{
   color: var(--font-sub-color)
 }
 
+.headerDiv{
+  position: relative;
+}
+
+.pageLogo{
+  position: absolute;
+  top: 9%;
+  left: 1%;
+}
+
+.nav{
+  margin-bottom: 3%;
+  background-color: var(--main-color);
+  padding: 2.4% 0 2.4% 11%;
+  border-radius: 8px;
+}
+
+.navLi{
+  display: inline;
+  padding-right: 10px;
+}
+
+.navLink{
+  color: var(--font-main-color);
+  text-decoration: none;
+  padding: 1.3%;
+}
+
+.navLink:hover{
+  background-color: var(--sub-color);
+}
+
 /* index (login page) */
 
+.logo{
+  position: absolute;
+  left: 5%;
+  top: 8%;
+}
 .form{
   display: flex;
   justify-content: center;
@@ -72,12 +109,6 @@ li{
   padding: 2% 0 5% 0;
   position: relative;
   border-radius: 8px;
-}
-
-.logo{
-  position: absolute;
-  left: 5%;
-  top: 8%;
 }
 
 #sectionTitle{
@@ -153,28 +184,6 @@ li{
 }
 
 /* customerList page */
-
-.nav{
-  margin-bottom: 3%;
-  background-color: var(--main-color);
-  padding: 1.3%;
-  border-radius: 8px;
-}
-
-.navLi{
-  display: inline;
-  padding-right: 10px;
-}
-
-.navLink{
-  color: var(--font-main-color);
-  text-decoration: none;
-  padding: 1.3%;
-}
-
-.navLink:hover{
-  background-color: var(--sub-color);
-}
 
 #searchDiv{
   padding: 2% 5%;
@@ -304,15 +313,8 @@ li{
   color: var(--font-main-color);
 }
 
-#addModelBtn:hover{
+#addModelBtn:hover, #addBrandBtn:hover{
   background-color: var(--main-color);
-}
-
-.addEditModelDiv{
-  background-color: var(--darker-main-color);
-  border-radius: 8px;
-  padding: 1% 2%;
-  margin-bottom: 2%;
 }
 
 .modelInputs{
@@ -323,16 +325,13 @@ li{
   margin-left: 1%;
 }
 
-#addModelDiv{
-  display: none;
+.modelInputs{
+  width: 350px;
+  height: 20px;
 }
 
-#editModelDiv{
-  display: none;
-}
-
-#editModelInputDiv{
-  display: none;
+.modelLabel{
+  font-size: 0.8em;
 }
 
 /* customerDetail */
@@ -359,4 +358,18 @@ li{
   background-color: var(--light-main-color);
   padding: 3%;
   border-radius: 8px;
+}
+
+/* product config page */
+.addEditModelDiv{
+  background-color: var(--darker-main-color);
+  border-radius: 8px;
+  padding: 1% 2%;
+  margin-bottom: 2%;
+}
+
+#newBrandH3{
+  border-top: 1px solid white;
+  margin-top: 2%;
+  padding-top: 2%;
 }

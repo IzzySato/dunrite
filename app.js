@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const chalk = require('chalk');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
@@ -16,12 +17,14 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 
 const findOrCreate = require('mongoose-findorcreate');
 
+//Routers
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register');
 const customerRouter = require('./routes/customerList');
 const addEditCustomerRouter = require('./routes/addEditCustomer');
 const customerDetailRouter = require('./routes/customerDetail');
+const productConfigRouter = require('./routes/productConfig');
 const logoutRouter = require('./routes/logout');
 
 const app = express();
@@ -75,7 +78,10 @@ const customerSchema = new mongoose.Schema({
 });
 
 const productSchema = new mongoose.Schema({
-  model: [String]
+  hottub: {
+    brandName: String,
+    model: [String]
+  }
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -149,6 +155,7 @@ app.use('/', (req, res, next) => {
   req.Customer = Customer;
   req.Product = Product;
   req.passport = passport;
+  req.chalk = chalk;
   next();
 });
 
@@ -159,6 +166,7 @@ app.use('/register', registerRouter);
 app.use('/customerList', customerRouter);
 app.use('/addEditCustomer', addEditCustomerRouter);
 app.use('/customerDetail', customerDetailRouter);
+app.use('/productConfig', productConfigRouter);
 app.use('/logout', logoutRouter);
 
 //google authentication
