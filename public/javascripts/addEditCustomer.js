@@ -1,4 +1,5 @@
-import * as ProductConfig from './productConfig.js';
+import * as ProductUtil from './productUtil.js';
+
 //add cutomer in the database
 const addCustomer = (
   id,
@@ -80,7 +81,7 @@ const processClick = (target) => {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  ProductConfig.insertBrandOptionsHTML();
+  ProductUtil.insertBrandOptionsHTML();
   document.addEventListener('click', ({
     target
   }) => processClick(target));

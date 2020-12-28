@@ -91,7 +91,7 @@ li{
 }
 
 .navLink:hover{
-  background-color: var(--sub-color);
+  color: var(--btn-hover-color);
 }
 
 /* index (login page) */
@@ -301,6 +301,16 @@ li{
   margin-right: 1%;
 }
 
+#addModelDivOpenBtn{
+  background-color: var(--btn-color);
+  color: var(--font-main-color);
+  text-decoration: none;
+}
+
+#addModelDivOpenBtn:hover{
+  background-color: var(--btn-hover-color);
+}
+
 .addEditBtn{
     margin: 0 2% 0 1%;
     border-radius: 8px;
@@ -372,4 +382,15 @@ li{
   border-top: 1px solid white;
   margin-top: 2%;
   padding-top: 2%;
+}
+
+#foundModels{
+  display: none;
+  background-color: var(--main-color);
+  padding: 1%;
+  border-radius: 8px;
+}
+
+#noFoundModel{
+  display: none;
 }

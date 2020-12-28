@@ -34,21 +34,27 @@
   <div id="editModelDiv" class="addEditModelDiv">
     <h3>Edit or Remove Brand / Model</h3>
     <div id="searchModelDiv">
-      <label for="seachModel">Seach Model</label>
+      <label for="seachModel">Seach Brand/Model</label>
       <input id="seachModelInput" class="inputs cusInput modelInputs" type="text" name="searchModel" placeholder="Seach Model">
       <button id="seachModelBtn" class="addEditBtn">Seach</button>
     </div>
     <div id="editModelInputDiv">
-      <label class="modelLabel" for="model"></label>
-      <input id="editModelInput" class="inputs cusInput modelInputs" type="text" name="model">
-      <button id="editModelBtn" class="addEditBtn">SUBMIT</button>
+      <div>
+        <ul id="foundModels">
+          <!-- found models here -->
+        </ul>
+      </div>
+
+      <div id="noFoundModel">
+        <h4>Sorry, no models found.</h4>
+      </div>
     </div>
 
-    <h3>Brands</h3>
+    <h3>All Brands</h3>
     <ul id="brandUl">
       <!-- data insert here from client js (addEditCustomer.js) -->
     </ul>
-    <h3>Models</h3>
+    <h3>All Models</h3>
     <ul id="modelsUl">
       <!-- data insert here from client js (addEditCustomer.js) -->
     </ul>

@@ -1,54 +1,49 @@
-//display hottub brands intoHTML for Edit and remove
-const hottubBrandTemplaet = ({_id, hottub: {brandName}}) => `
+import * as ProductUtil from './productUtil.js';
+
+//html template used for addBrandHTML()
+const hottubBrandTemplate = ({_id, hottub: {brandName}}) => `
 <li data-id=${_id}>${brandName}
   <i class="fas fa-edit modelEditIcon modelIcon"></i>
   <i data-id=${_id} class="fas fa-trash-alt removeBrandIcon modelIcon"></i>
 </li>
 `;
-const insertBrandToHTML = () => {
-  fetch('/productConfig/brand')
-  .then(res => res.json())
-  .then(json => {
-    const insertDiv = document.querySelector('#brandUl');
-    const html = json.map((j) => hottubBrandTemplaet(j)).join('');
-    insertDiv.innerHTML = html;
-  })
+
+const addBrandHTML = (data) => {
+  const brandUl = document.querySelector('#brandUl');
+  if(brandUl){
+    const brandHTML = data.map((product) => hottubBrandTemplate(product)).join('');
+    brandUl.innerHTML = brandHTML;
+  }
 };
 
-//Edit or Remove hottub models insert all models into HTML
-const insertModelToHTML = () => {
-  const insertDiv = document.querySelector('#modelsUl');
-  let html = '';
-  fetch('/productConfig/brand')
-  .then(res => res.json())
-  .then(json => {
-    json.forEach((j) => {
-      j.hottub.model.forEach((m) => {
-        html += `
-        <li>${j.hottub.brandName} : ${m}
-          <i class="fas fa-edit modelEditIcon modelIcon"></i>
-          <i class="fas fa-trash-alt modelRemoveIcon modelIcon"></i>
-        </li>
-      `;
-      });
+//brand/model list template
+const brandModelTemplate = (brand, model) => `
+<li>${brand} : ${model}
+  <i class="fas fa-edit modelEditIcon modelIcon"></i>
+  <i class="fas fa-trash-alt modelRemoveIcon modelIcon"></i>
+</li>
+`;
+
+const addModelHTML = (data) => {
+  const modelUl = document.querySelector('#modelsUl');
+  let modelHTML = '';
+  data.forEach((product) => {
+    product.hottub.model.forEach((mo) => {
+      modelHTML += brandModelTemplate(product.hottub.brandName, mo);
     });
-    insertDiv.innerHTML = html;
   });
+  modelUl.innerHTML = modelHTML;
 };
 
-//GET hottub brand
-const insertBrandOptionsHTML = () => {
+//GET hottub models insert all models into HTML (Edit or Remove section)
+const insertModelToHTML = () => {
   fetch('/productConfig/brand')
   .then(res => res.json())
   .then(json => {
-    const insertDiv = document.querySelectorAll('.brandSelect');
-    insertDiv.forEach(d => {
-       const html = json.map((d) => `<option value="${d.hottub.brandName}">${d.hottub.brandName}</option>`);
-       d.innerHTML = '<option value="">Select a brand</option>' + html;
-    }); 
+    addBrandHTML(json);
+    addModelHTML(json);
   });
 };
-
 //POST add a new Brand into databse
 const addBrand = (brandName) => {
   const brand = {brandName};
@@ -77,6 +72,33 @@ const addModel = (brandName, model) => {
     .then(({url}) => location.href=url);
 };
 
+const searchHottub = (searchVal) => {
+  let hottubLi = '';
+  fetch('/productConfig/brand')
+  .then(res => res.json())
+  .then(json => {
+    json.forEach((product) => {
+      product.hottub.model.forEach((m) => {
+        if(product.hottub.brandName === searchVal){
+          hottubLi += brandModelTemplate(product.hottub.brandName, m);
+        };
+        if(m === searchVal){
+          hottubLi += brandModelTemplate(product.hottub.brandName, m);
+        };
+      });
+    });
+
+    if(hottubLi === ''){
+      const noFoundModelDiv = document.querySelector('#noFoundModel');
+      noFoundModelDiv.style.display='block';
+    }else{
+      const foundModelUl = document.querySelector('#foundModels');
+      foundModelUl.style.display='block';
+      foundModelUl.innerHTML=hottubLi;
+    }
+  });
+};
+
 const processClick = (target) => {
   if (target.matches('.removeBrandIcon')) {
     const {dataset: {id}} = target;
@@ -91,17 +113,16 @@ const processClick = (target) => {
     const newModel = document.querySelector('#newModel').value;
     addModel(brandName, newModel);
   };
+  if(target.matches('#seachModelBtn')){
+    const searchVal = document.querySelector('#seachModelInput').value;
+    searchHottub(searchVal);
+  }
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  insertBrandToHTML();
   insertModelToHTML();
-  insertBrandOptionsHTML();
+  ProductUtil.insertBrandOptionsHTML();
   document.addEventListener('click', ({
     target
   }) => processClick(target));
 });
-
-export{
-  insertBrandOptionsHTML
-};

@@ -67,7 +67,10 @@ const customerSchema = new mongoose.Schema({
   city: String,
   postcode: String,
   country: String,
-  hottubModel: String,
+  hottubModel: {
+    brand: String,
+    model: String
+  },
   history: [
     {
       date: {type: Date, default: Date.now},

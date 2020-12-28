@@ -11,6 +11,9 @@
     <a class="navLink" href="/customerList">
       <li class="navLi">Customer List</li>
     </a>
+    <a class="navLink" href="/productConfig">
+      <li class="navLi">Product Configuration</li>
+    </a>
   </ul>
 </div>
 <div id="customerDetailDiv">
@@ -35,13 +38,15 @@
       <p class="cusDetailData"><%- data.street %> <%- data.city %> <%-data.postcode %> <%-data.country%></p>
     </div>
     <div id="workDiv">
+      <button class="btn">ADD New History</button>
       <h3 class="cusDetailHeader">Hottub Model:</h3>
       <p class="cusDetailData"><%- data.hottubModel%></p>
-      <button class="btn">ADD New History</button>
-      <h3 class="cusDetailHeader">Last Visited Date:</h3>
-      <p class="cusDetailData"><%- data.history[0].date%></p>
-      <h3 class="cusDetailHeader">Last Visited work:</h3>
-      <p class="cusDetailData"><%- data.history[0].service%></p>
+
+      <div class="serviceDiv">
+        <h3 class="cusDetailHeader">Date:<span><%- data.history%>2020/8/8</span></h3>
+        <h3 class="cusDetailHeader">Service:</h3>
+        <p class="cusDetailData"><%- data.history%></p>
+      </div>
       <h3 class="cusDetailHeader">Comments:</h3>
       <p class="cusDetailData"><%- data.comments%></p>
     </div>
