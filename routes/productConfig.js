@@ -34,21 +34,30 @@ router.get('/brandDelete/:id', async (req, res) => {
   }
 });
 
+//POST remove model from product collection
+//TODO
+
 //POST add a new Hottub brand to the product collection
 router.post('/addBrand', (req, res) => {
-  try{
+  if (req.isAuthenticated()) {
+    try{
     const {body: {brandName}} = req;
     const newProduct = new req.Product({hottub: {brandName}});
     newProduct.save();
     res.json({url: 'productConfig'});
-  }catch(err){
-    console.log(err);
+    }catch(err){
+      console.log(err);
+    }
+  }else{
+    console.log('not authenticated');
+    res.redirect('/');
   }
 });
 
 //POST add a new Hottub Model to the product collection
 router.post('/addModel', async (req, res) => {
-  try {
+  if (req.isAuthenticated()) {
+      try {
     const { body: {brandName, model} } = req;
     console.log(`${brandName} ${model}`);
     await req.Product.findOne({'hottub.brandName': brandName}, (err, foundProduct) => {
@@ -61,8 +70,12 @@ router.post('/addModel', async (req, res) => {
     });
     res.render('productConfig', 
     { script: 'productConfig'});
-  } catch (err) {
-    console.log(err);
+    } catch (err) {
+      console.log(err);
+    }
+  }else{
+    console.log('not authenticated');
+    res.redirect('/');
   }
 });
 

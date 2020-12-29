@@ -1,34 +1,42 @@
+let selectedBrand = '';
+
 const insertBrands = (json) => {
-    const brandSelect = document.querySelectorAll('.brandSelect');
-    brandSelect.forEach(data => {
-       const html = json.map((product) => `<option value="${product.hottub.brandName}">${product.hottub.brandName}</option>`);
-       data.innerHTML = '<option value="">Select a brand</option>' + html;
-    });
+  const brandSelect = document.querySelectorAll('.brandSelect');
+  brandSelect.forEach(data => {
+    const html = json.map((product) => `<option value="${product.hottub.brandName}">${product.hottub.brandName}</option>`);
+    data.innerHTML = '<option value="">Select a brand</option>' + html;
+  });
 };
 
-//TODO insert models from the selected brand
 const insertModels = (json) => {
   const modelSelect = document.querySelector('#modelSelect');
-  if(modelSelect){
-    const html = json.map((product) => {
-      console.log(product.hottub.model);
+  const brandSelect = document.querySelector('#brandSelect');
+  if (modelSelect) {
+    brandSelect.addEventListener('change', function () {
+      let html = '';
+      selectedBrand = document.querySelector('#brandSelect').value;
+      json.forEach((product) => {
+        if (product.hottub.brandName === selectedBrand) {
+          product.hottub.model.forEach((m) => {
+            html += `<option value="${m}">${m}</option>`
+          });
+        }
+      });
+      modelSelect.innerHTML = '<option value="">Select a brand</option>' + html;
     });
-    //`<option value="${m}">${m}</option>`
-    console.log(html);
-    modelSelect.innerHTML = '<option value="">Select a brand</option>' + html;
   }
 };
 
 //GET hottub brand options into select
 const insertBrandOptionsHTML = () => {
   fetch('/productConfig/brand')
-  .then(res => res.json())
-  .then(json => {
-    insertBrands(json);
-    insertModels(json);
-  });
+    .then(res => res.json())
+    .then(json => {
+      insertBrands(json);
+      insertModels(json);
+    });
 };
 
-export{
+export {
   insertBrandOptionsHTML
 };

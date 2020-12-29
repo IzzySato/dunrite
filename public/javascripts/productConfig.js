@@ -3,7 +3,7 @@ import * as ProductUtil from './productUtil.js';
 //html template used for addBrandHTML()
 const hottubBrandTemplate = ({_id, hottub: {brandName}}) => `
 <li data-id=${_id}>${brandName}
-  <i class="fas fa-edit modelEditIcon modelIcon"></i>
+  <i class="fas fa-edit editBrandIcon modelIcon"></i>
   <i data-id=${_id} class="fas fa-trash-alt removeBrandIcon modelIcon"></i>
 </li>
 `;
@@ -44,6 +44,7 @@ const insertModelToHTML = () => {
     addModelHTML(json);
   });
 };
+
 //POST add a new Brand into databse
 const addBrand = (brandName) => {
   const brand = {brandName};
@@ -103,6 +104,9 @@ const processClick = (target) => {
   if (target.matches('.removeBrandIcon')) {
     const {dataset: {id}} = target;
     location.href=`/productConfig/brandDelete/${id}`;
+  };
+  if(target.matches('.modelRemoveIcon')){
+    //TODO
   };
   if(target.matches('#addBrandBtn')){
     const newBrand = document.querySelector('#newBrand').value;
