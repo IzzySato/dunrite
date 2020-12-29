@@ -1,39 +1,33 @@
 let selectedBrand = '';
 
-const insertBrands = (json) => {
-  const brandSelect = document.querySelectorAll('.brandSelect');
-  brandSelect.forEach(data => {
-    const html = json.map((product) => `<option value="${product.hottub.brandName}">${product.hottub.brandName}</option>`);
-    data.innerHTML = '<option value="">Select a brand</option>' + html;
-  });
+const insertBrands = (brandSelect, json) => {
+  const html = json.map((product) => `<option value="${product.hottub.brandName}">${product.hottub.brandName}</option>`);
+  brandSelect.innerHTML = '<option value="">Select a brand</option>' + html;
 };
 
-const insertModels = (json) => {
-  const modelSelect = document.querySelector('#modelSelect');
-  const brandSelect = document.querySelector('#brandSelect');
+const insertModels = (brandSelect, modelSelect, json) => {
   if (modelSelect) {
-    brandSelect.addEventListener('change', function () {
       let html = '';
+      console.log(JSON.stringify(json));
       selectedBrand = document.querySelector('#brandSelect').value;
-      json.forEach((product) => {
-        if (product.hottub.brandName === selectedBrand) {
-          product.hottub.model.forEach((m) => {
-            html += `<option value="${m}">${m}</option>`
-          });
-        }
-      });
+      const { hottub: { model }} = json.find(({ hottub: { brandName } }) => brandName === selectedBrand);
+
+          html += model.map(m => `<option value="${m}">${m}</option>`)
+                        .join('');
+
       modelSelect.innerHTML = '<option value="">Select a brand</option>' + html;
-    });
   }
 };
 
 //GET hottub brand options into select
-const insertBrandOptionsHTML = () => {
+const insertBrandOptionsHTML = (brandSelect, modelSelect) => {
   fetch('/productConfig/brand')
     .then(res => res.json())
     .then(json => {
-      insertBrands(json);
-      insertModels(json);
+       brandSelect.addEventListener('change', () => {
+        insertModels(brandSelect, modelSelect, json);
+      });
+      insertBrands(brandSelect, json);      
     });
 };
 

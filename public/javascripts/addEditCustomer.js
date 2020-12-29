@@ -81,7 +81,10 @@ const processClick = (target) => {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  ProductUtil.insertBrandOptionsHTML();
+  const modelSelect = document.querySelector('#modelSelect');
+  const brandSelect = document.querySelector('#brandSelect');
+
+  ProductUtil.insertBrandOptionsHTML(brandSelect, modelSelect);
   document.addEventListener('click', ({
     target
   }) => processClick(target));

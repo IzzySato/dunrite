@@ -73,6 +73,7 @@ const addModel = (brandName, model) => {
     .then(({url}) => location.href=url);
 };
 
+//Search brand or model function
 const searchHottub = (searchVal) => {
   let hottubLi = '';
   fetch('/productConfig/brand')
@@ -124,8 +125,9 @@ const processClick = (target) => {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
+  const brandSelect = document.querySelector('#brandNameSelect');
   insertModelToHTML();
-  ProductUtil.insertBrandOptionsHTML();
+  ProductUtil.insertBrandOptionsHTML(brandSelect);
   document.addEventListener('click', ({
     target
   }) => processClick(target));
