@@ -89,7 +89,7 @@ router.post('/add', async (req, res) => {
         hottubModel,
         history,
         comments
-      })
+      });
     }
     res.json({
       url: '/customerList'

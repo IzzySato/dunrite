@@ -94,6 +94,10 @@ li{
   color: var(--btn-hover-color);
 }
 
+.modelIcon:hover{
+  cursor: pointer;
+}
+
 /* index (login page) */
 
 .logo{
@@ -319,12 +323,8 @@ li{
 }
 
 .addEditBtn:hover{
-  background-color: var(--darker-main-color);
-  color: var(--font-main-color);
-}
-
-#addModelBtn:hover, #addBrandBtn:hover{
   background-color: var(--main-color);
+  color: var(--font-main-color);
 }
 
 .modelInputs{
@@ -392,5 +392,9 @@ li{
 }
 
 #noFoundModel{
+  display: none;
+}
+
+#editHottubDiv{
   display: none;
 }
