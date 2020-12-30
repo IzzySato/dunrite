@@ -1,3 +1,5 @@
+import * as WorkHistoryUtil from './workHistoryUtil.js';
+
 const customerTemplate = ({
   _id,
   customerFirstName,
@@ -18,9 +20,12 @@ const customerTemplate = ({
   <li class="data cusAddress">${street} ${city} ${postcode} ${country}</li>
   <li class="data">
     <div>
-      <i class="fas fa-edit editCustomer customerPageIcon" data-id="${_id}"></i>
-      <i class="fas fa-trash-alt removeCustomer customerPageIcon" data-id="${_id}"></i>
-      <a class="detailBtn" href="customerDetail/${_id}" data-id="${_id}">Details</a>
+      <div class="sIcons">
+        <i class="fas fa-edit editCustomer customerPageIcon" data-id="${_id}"></i>
+        <i class="fas fa-trash-alt removeCustomer customerPageIcon" data-id="${_id}"></i>
+        <a class="detailBtn" href="customerDetail/${_id}" data-id="${_id}">Details</a>
+      </div>
+      <button class="addHistoryBtn">Add Work History</button>
     </div>
   </li>
 </ul>`;
@@ -29,6 +34,7 @@ const processClick = (target) => {
   const {dataset: {id}} = target;
   if(target.matches('.removeCustomer')) location.href=`/customerList/data/delete/${id}`;
   if(target.matches('.editCustomer')) location.href=`/addEditCustomer/${id}`;
+  if(target.matches('.addHistoryBtn')) WorkHistoryUtil.openCloseWorkFormDiv();
 };
 
 const loadCustomer = () => {

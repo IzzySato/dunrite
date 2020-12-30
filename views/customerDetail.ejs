@@ -11,6 +11,7 @@
     <a class="navLink" href="/customerList">
       <li class="navLi">Customer List</li>
     </a>
+    <a class="navLink" href="/addEditCustomer"><li class="navLi">Add New Customer</li></a>
     <a class="navLink" href="/productConfig">
       <li class="navLi">Product Configuration</li>
     </a>
@@ -26,29 +27,43 @@
     <div>
       <h3 class="cusDetailHeader">CustomerID:</h3>
       <p class="cusDetailData"><%- data._id%></p>
-      <h3 class="cusDetailHeader">First Name:</h3>
-      <p class="cusDetailData"><%- data.customerFirstName%></p>
-      <h3 class="cusDetailHeader">Last Name:</h3>
-      <p class="cusDetailData"><%- data.customerLastName%></p>
+      <h3 class="cusDetailHeader">Hottub Model: </h3>
+      <p id="hottubBrandModel" class="cusDetailData"><%- data.hottubModel.brand %> / <%- data.hottubModel.model%></p>
+      <div id="nameGrid">
+        <div>
+          <h3 class="cusDetailHeader">First Name:</h3>
+          <p class="cusDetailData"><%- data.customerFirstName%></p>
+        </div>
+        <div>
+          <h3 class="cusDetailHeader">Last Name:</h3>
+          <p class="cusDetailData"><%- data.customerLastName%></p>
+        </div>
+      </div>
       <h3 class="cusDetailHeader">Phone Number:</h3>
       <p class="cusDetailData"><%- data.phone%></p>
       <h3 class="cusDetailHeader">email:</h3>
       <p class="cusDetailData"><%- data.email%></p>
       <h3 class="cusDetailHeader">Address:</h3>
       <p class="cusDetailData"><%- data.street %> <%- data.city %> <%-data.postcode %> <%-data.country%></p>
-    </div>
-    <div id="workDiv">
-      <button class="btn">ADD New History</button>
-      <h3 class="cusDetailHeader">Hottub Model:</h3>
-      <p class="cusDetailData"><%- data.hottubModel%></p>
-
-      <div class="serviceDiv">
-        <h3 class="cusDetailHeader">Date:<span><%- data.history%>2020/8/8</span></h3>
-        <h3 class="cusDetailHeader">Service:</h3>
-        <p class="cusDetailData"><%- data.history%></p>
-      </div>
       <h3 class="cusDetailHeader">Comments:</h3>
       <p class="cusDetailData"><%- data.comments%></p>
+    </div>
+    <div id="workDiv">
+      <button id="addNewWorkBtn" class="btn addHistoryBtn">ADD New History</button>
+      <div id="newWorkForm" class="workForm" >
+        <label for="date">Date</label>
+        <input id="newDateInput" class="inputs cusInput" type="date" name="date"><br>
+        <label for="work">Service</label>
+        <input id="newWorkInput" class="inputs cusInput" type="text" name="work" placeholder="e.g. Fixed pump"><br>
+        <button class="addEditBtn" >Submit</button>
+      </div>
+
+        <div class="serviceDiv">
+          <h3 class="cusDetailHeader">Date:</h3>
+          <p class="workP"></p>
+          <h3 class="cusDetailHeader">service:</h3>
+          <p class="workP"></p>
+      </div>
     </div>
   </div>
 </div>

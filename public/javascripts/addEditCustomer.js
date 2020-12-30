@@ -12,7 +12,6 @@ const addCustomer = (
   postcode,
   country = 'Canada',
   hottubModel,
-  history = [],
   comments = '') => {
   const customer = {
     id,
@@ -25,7 +24,6 @@ const addCustomer = (
     postcode,
     country,
     hottubModel,
-    history,
     comments
   };
 
@@ -53,14 +51,13 @@ const processClick = (target) => {
     const city = document.querySelector('#city').value;
     const postcode = document.querySelector('#postcode').value;
     const country = document.querySelector('#country').value;
-    const hottubModel = document.querySelector('#model').value;
-    const date = document.querySelector('#date').value;
-    const service = document.querySelector('#work').value;
+    const brand = document.querySelector('#brandSelect').value;
+    const model = document.querySelector('#modelSelect').value;
     const comments = document.querySelector('#comments').value;
 
-    const history = {
-      date,
-      service
+    const hottubModel = {
+      brand,
+      model
     };
 
     addCustomer(
@@ -74,7 +71,6 @@ const processClick = (target) => {
       postcode,
       country,
       hottubModel,
-      history,
       comments
     );
   }

@@ -51,7 +51,6 @@ router.post('/removeModel', async (req, res) => {
           model
         }
       } = req;
-
       const product = await req.Product.findOne({'hottub.brandName': brandName});
       product.hottub.model = product.hottub.model.filter(m => m !== model);
       product.save();

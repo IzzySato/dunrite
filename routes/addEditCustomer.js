@@ -51,7 +51,6 @@ router.post('/add', async (req, res) => {
       postcode,
       country,
       hottubModel,
-      history,
       comments
     }
   } = req;
@@ -66,7 +65,6 @@ router.post('/add', async (req, res) => {
     postcode,
     country,
     hottubModel,
-    history,
     comments
   };
 
@@ -87,7 +85,6 @@ router.post('/add', async (req, res) => {
         postcode,
         country,
         hottubModel,
-        history,
         comments
       });
     }
@@ -97,6 +94,34 @@ router.post('/add', async (req, res) => {
   } catch (err) {
     console.log(err);
   };
+});
+
+router.post('/addWork', async (req, res) => {
+  if (req.isAuthenticated()) {
+    try{
+      const {
+        body: {
+          customerId,
+          date,
+          service
+        }
+      } = req;
+      await req.Customer.findOne({
+        _id: id
+      }, (err, foundPerson) => {
+        if(err) console.log(err);
+        else{
+          console.log('I found the customer: firstName is ' + foundPerson.customerFirstName);
+          foundPerson.history.put({date, service});
+        }
+      })
+    }catch(err){
+      console.log(err);
+    }
+  }else{
+    console.log('not authenticated');
+    res.redirect('/');
+  }
 });
 
 module.exports = router;

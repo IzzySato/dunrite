@@ -260,11 +260,30 @@ li{
   text-decoration: none;
   color: var(--font-main-color);
   background-color: var(--main-color);
-  padding: 3px 4px;
+  padding: 3px 5px;
   border-radius: 8px;
 }
 
 .detailBtn:hover{
+  cursor: pointer;
+  background-color: var(--btn-hover-color);
+  color: var(--font-main-color);
+}
+
+.sIcons{
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+}
+
+.addHistoryBtn{
+  font-size: 0.7em;
+  color: var(--font-main-color);
+  background-color: var(--main-color);
+  padding: 6px;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+.addHistoryBtn:hover{
   cursor: pointer;
   background-color: var(--btn-hover-color);
   color: var(--font-main-color);
@@ -364,9 +383,40 @@ li{
   grid-template-columns: 40% 60%;
 }
 
+#nameGrid{
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+#hottubBrandModel{
+  font-size: 2em;
+  margin: 15px 0 15px 0;
+}
+
 #workDiv{
   background-color: var(--light-main-color);
   padding: 3%;
+  border-radius: 8px;
+}
+
+.serviceDiv{
+  background-color: var(--darker-main-color);
+  color: var(--font-main-color);
+  padding: 1.5%;
+  border-radius: 8px;
+  margin-top: 2%;
+}
+
+.workP{
+  color: var(--font-main-color);
+}
+
+.workForm{
+  display: none;
+  padding: 1%;
+  margin-top: 2%;
+  background-color: var(--main-color);
+  color: var(--font-main-color);
   border-radius: 8px;
 }
 
