@@ -106,15 +106,13 @@ router.post('/addWork', async (req, res) => {
           service
         }
       } = req;
-      await req.Customer.findOne({
-        _id: id
-      }, (err, foundPerson) => {
-        if(err) console.log(err);
-        else{
-          console.log('I found the customer: firstName is ' + foundPerson.customerFirstName);
-          foundPerson.history.put({date, service});
-        }
-      })
+
+      const newWork = new req.Work({customerId, date, service});
+      console.log(req.chalk.yellow(JSON.stringify(newWork)));
+      newWork.save();
+      res.json({
+        url: '/customerList'
+      });
     }catch(err){
       console.log(err);
     }

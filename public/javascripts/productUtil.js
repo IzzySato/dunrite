@@ -8,7 +8,6 @@ const insertBrands = (brandSelect, json) => {
 const insertModels = (brandSelect, modelSelect, json) => {
   if (modelSelect) {
       let html = '';
-      console.log(JSON.stringify(json));
       selectedBrand = document.querySelector('#brandSelect').value;
       const { hottub: { model }} = json.find(({ hottub: { brandName } }) => brandName === selectedBrand);
 

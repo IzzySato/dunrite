@@ -49,13 +49,13 @@
       <p class="cusDetailData"><%- data.comments%></p>
     </div>
     <div id="workDiv">
-      <button id="addNewWorkBtn" class="btn addHistoryBtn">ADD New History</button>
+      <button id="addNewWorkBtn" class="addHistoryBtn">ADD New History</button>
       <div id="newWorkForm" class="workForm" >
         <label for="date">Date</label>
-        <input id="newDateInput" class="inputs cusInput" type="date" name="date"><br>
+        <input id="detailDateInput" class="inputs cusInput" type="date" name="date"><br>
         <label for="work">Service</label>
-        <input id="newWorkInput" class="inputs cusInput" type="text" name="work" placeholder="e.g. Fixed pump"><br>
-        <button class="addEditBtn" >Submit</button>
+        <input id="detailWorkInput" class="inputs cusInput" type="text" name="work" placeholder="e.g. Fixed pump"><br>
+        <button <%- dataID()%> class="submitNewWork  smallBtnOne" >Submit</button>
       </div>
 
         <div class="serviceDiv">

@@ -54,6 +54,23 @@ li{
   background-color: var(--btn-hover-color);
 }
 
+.smallBtnOne{
+  margin: 0 2% 0 1%;
+  border-radius: 8px;
+  padding: 3px 8px;
+  border: none;
+}
+
+.smallBtnOne:hover{
+  cursor: pointer;
+  background-color: var(--main-color);
+  color: var(--font-main-color);
+}
+
+input{
+  padding-left: 15px;
+}
+
 ::placeholder{
   padding-left: 15px;
 }
@@ -192,19 +209,21 @@ li{
 #searchDiv{
   padding: 2% 5%;
   border-radius: 8px;
-  position: relative;
-}
-
-.fa-search{
-  font-size: 1.4em;
-  color: var(--main-color);
-  position: absolute;
-  top: 36%;
-  left: 2%;
+  padding-left: 0;
 }
 
 #searchInput{
   border: 1px solid black;
+}
+
+#searchCustomerIcon{
+  font-size: 1.4em;
+  color: var(--main-color);
+  top: 30px;
+}
+
+#foundCustomerDiv{
+  margin-top: 3%;
 }
 
 #tableHeader{
@@ -332,18 +351,6 @@ li{
 
 #addModelDivOpenBtn:hover{
   background-color: var(--btn-hover-color);
-}
-
-.addEditBtn{
-    margin: 0 2% 0 1%;
-    border-radius: 8px;
-    padding: 3px 8px;
-    border: none;
-}
-
-.addEditBtn:hover{
-  background-color: var(--main-color);
-  color: var(--font-main-color);
 }
 
 .modelInputs{

@@ -18,6 +18,11 @@ const processClick = (target) => {
   if(target.matches('.removeCustomer')) location.href=`/customerList/data/delete/${id}`;
   if(target.matches('.editCustomer')) location.href=`/addEditCustomer/${id}`;
   if(target.matches('.addHistoryBtn')) WorkHistoryUtil.openCloseWorkFormDiv();
+  if(target.matches('.submitNewWork')){
+    const date = document.querySelector('#detailDateInput').value;
+    const service = document.querySelector('#detailWorkInput').value;
+    WorkHistoryUtil.addWork( id, date, service);
+  }
 };
 
 document.addEventListener('DOMContentLoaded', function () {

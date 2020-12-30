@@ -82,7 +82,6 @@ const getBrandNameById = (id) => {
 //POST remove model
 const removeModel = (brandName, model) => {
   const product = {brandName, model};
-  console.log(product);
   fetch('/productConfig/removeModel', {
       method: 'POST',
       body: JSON.stringify(product),
