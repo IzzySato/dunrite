@@ -25,4 +25,42 @@ router.get('/data/:id', async (req, res) => {
   }
 });
 
+//GET all work history
+router.get('/workHistory/:id', async (req, res) => {
+  if(req.isAuthenticated){
+    const {id} = req.params;
+    console.log('work called');
+    const data = await req.Work.find({customerId: id});
+    res.json(data);
+  }else{
+    console.log('not authenticated');
+    res.redirect('/');
+  }
+});
+
+router.post('/addWork', async (req, res) => {
+  if (req.isAuthenticated()) {
+    try{
+      const {
+        body: {
+          customerId,
+          date,
+          service
+        }
+      } = req;
+
+      const newWork = new req.Work({customerId, date, service});
+      newWork.save();
+      res.json({
+        url: `/customerDetail/${customerId}`
+      });
+    }catch(err){
+      console.log(err);
+    }
+  }else{
+    console.log('not authenticated');
+    res.redirect('/');
+  }
+});
+
 module.exports = router;

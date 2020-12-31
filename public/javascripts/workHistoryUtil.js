@@ -13,7 +13,8 @@ const addWork = (customerId, date, service) => {
     date, 
     service
   };
-  fetch('/addEditCustomer/addWork', {
+  
+  fetch('/customerDetail/addWork', {
       method: 'POST',
       body: JSON.stringify(work),
       headers: {

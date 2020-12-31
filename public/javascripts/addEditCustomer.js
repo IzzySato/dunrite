@@ -77,10 +77,12 @@ const processClick = (target) => {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  const modelSelect = document.querySelector('#modelSelect');
+  const {dataset: {id}} = document.querySelector('#form');
+  const brand = document.querySelector('#brandSelect').dataset.name;
+  const model = document.querySelector('#modelSelect').dataset.name;
   const brandSelect = document.querySelector('#brandSelect');
-
-  ProductUtil.insertBrandOptionsHTML(brandSelect, modelSelect);
+  const modelSelect = document.querySelector('#modelSelect');
+  ProductUtil.insertBrandOptionsHTML(id, brandSelect, modelSelect, brand, model) ;
   document.addEventListener('click', ({
     target
   }) => processClick(target));

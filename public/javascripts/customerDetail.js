@@ -1,16 +1,35 @@
 import * as WorkHistoryUtil from './workHistoryUtil.js';
+const workData = {};
 
-const addNewWork = (id, date, service) => {
-  const newWork = {id, date, service};
-  fetch('/addEditCustomer/addWork', {
-      method: 'POST',
-      body: JSON.stringify(newModel),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
-    .then(res => res.json())
-    .then(({url}) => location.href=url);
+const getWorkData = (customerId) => new Promise ((res, rej) => {
+  fetch(`/customerDetail/workHistory/${customerId}`)
+  .then(res => res.json())
+  .then(json => {
+    workData.histories = json;
+    res();
+  });
+});
+
+
+const workTemplate = ({date, service}) => {
+  const newDate = new Date(date);
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'];
+
+  const html = `
+<div class="serviceDiv">
+  <h3 class="cusDetailHeader">Date:</h3>
+  <p class="workP">${newDate.getDate()} / ${monthNames[newDate.getMonth()]}/ ${newDate.getFullYear()}</p>
+  <h3 class="cusDetailHeader">service:</h3>
+  <p class="workP">${service}</p>
+</div>
+`;
+return html;
+};
+
+const workDataToHTML = (insertDiv) => {
+  const html = workData.histories.map(work => workTemplate(work)).join('');
+  insertDiv.innerHTML = html;
 };
 
 const processClick = (target) => {
@@ -26,5 +45,10 @@ const processClick = (target) => {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
-  document.addEventListener('click', ({target}) => processClick(target));
+  const {dataset: {id}} = document.querySelector('#customerID');
+  getWorkData(id).then(() => {
+    const insertDiv = document.querySelector('#workDataDiv');
+    workDataToHTML(insertDiv);
+    document.addEventListener('click', ({target}) => processClick(target));
+  });
 });

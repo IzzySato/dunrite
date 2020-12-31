@@ -26,7 +26,7 @@
   <div id="detailDiv" <%- dataID()%>>
     <div>
       <h3 class="cusDetailHeader">CustomerID:</h3>
-      <p class="cusDetailData"><%- data._id%></p>
+      <p <%- dataID()%> id="customerID" class="cusDetailData"><%- data._id%></p>
       <h3 class="cusDetailHeader">Hottub Model: </h3>
       <p id="hottubBrandModel" class="cusDetailData"><%- data.hottubModel.brand %> / <%- data.hottubModel.model%></p>
       <div id="nameGrid">
@@ -58,11 +58,8 @@
         <button <%- dataID()%> class="submitNewWork  smallBtnOne" >Submit</button>
       </div>
 
-        <div class="serviceDiv">
-          <h3 class="cusDetailHeader">Date:</h3>
-          <p class="workP"></p>
-          <h3 class="cusDetailHeader">service:</h3>
-          <p class="workP"></p>
+        <div id="workDataDiv">
+
       </div>
     </div>
   </div>

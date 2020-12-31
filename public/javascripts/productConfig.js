@@ -98,9 +98,9 @@ const searchHottub = (searchVal) => {
   let hottubLi = '';
   data.products.forEach(product => {
     product.hottub.model.forEach(m =>{
-      if(product.hottub.brandName === searchVal)
+      if(product.hottub.brandName.toLowerCase() === searchVal.toLowerCase())
         hottubLi += brandModelTemplate(product._id, product.hottub.brandName, m);
-      if(m === searchVal)
+      if(m.toLowerCase() === searchVal.toLowerCase())
         hottubLi += brandModelTemplate(product._id, product.hottub.brandName, m);
     });
 
@@ -160,7 +160,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const brandSelect = document.querySelector('#brandNameSelect');
     addBrandHTML(data.products);
     addModelHTML(data.products);
-    ProductUtil.insertBrandOptionsHTML(brandSelect);
+    const id = 'new';
+    ProductUtil.insertBrandOptionsHTML(id, brandSelect);
     document.addEventListener('click', ({
       target
     }) => processClick(target));

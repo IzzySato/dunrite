@@ -63,8 +63,7 @@ li{
 
 .smallBtnOne:hover{
   cursor: pointer;
-  background-color: var(--main-color);
-  color: var(--font-main-color);
+  background-color: var(--light-main-color);
 }
 
 input{

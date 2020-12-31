@@ -96,30 +96,4 @@ router.post('/add', async (req, res) => {
   };
 });
 
-router.post('/addWork', async (req, res) => {
-  if (req.isAuthenticated()) {
-    try{
-      const {
-        body: {
-          customerId,
-          date,
-          service
-        }
-      } = req;
-
-      const newWork = new req.Work({customerId, date, service});
-      console.log(req.chalk.yellow(JSON.stringify(newWork)));
-      newWork.save();
-      res.json({
-        url: '/customerList'
-      });
-    }catch(err){
-      console.log(err);
-    }
-  }else{
-    console.log('not authenticated');
-    res.redirect('/');
-  }
-});
-
 module.exports = router;
