@@ -3,7 +3,7 @@ const router = express.Router();
 
 //GET load the login page
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Dunrite', script: 'login' });
+  res.render('index', { title: 'Dunrite', scripts: ['login', 'util']});
 });
 
 //POST login user

@@ -54,6 +54,10 @@ li{
   background-color: var(--btn-hover-color);
 }
 
+.pointer:hover{
+  cursor: pointer;
+}
+
 .smallBtnOne{
   margin: 0 2% 0 1%;
   border-radius: 8px;
@@ -62,7 +66,6 @@ li{
 }
 
 .smallBtnOne:hover{
-  cursor: pointer;
   background-color: var(--light-main-color);
 }
 
@@ -78,21 +81,14 @@ input{
   color: var(--font-sub-color)
 }
 
-.headerDiv{
-  position: relative;
-}
-
 .pageLogo{
   position: absolute;
   top: 9%;
-  left: 1%;
+  left: 8%;
 }
 
-.nav{
-  margin-bottom: 3%;
-  background-color: var(--main-color);
-  padding: 2.4% 0 2.4% 11%;
-  border-radius: 8px;
+.topNav{
+  padding: 2% 0 2% 12%;
 }
 
 .navLi{
@@ -110,8 +106,18 @@ input{
   color: var(--btn-hover-color);
 }
 
-.modelIcon:hover{
-  cursor: pointer;
+ul.hamburgerMenu{
+  display: none;
+}
+
+.boxOne{
+  background-color: var(--main-color);
+  border-radius: 8px;
+}
+
+.boxTwo{
+  background-color: var(--darker-main-color);
+  border-radius: 8px;
 }
 
 /* index (login page) */
@@ -241,6 +247,10 @@ input{
   margin-top: 5%;
 }
 
+.cusLiSpan{
+  display: none;
+}
+
 .custmerData{
   color: var(--font-sub-color);
   margin-bottom: 2%;
@@ -268,7 +278,6 @@ input{
 }
 
 .customerPageIcon:hover{
-  cursor: pointer;
   background-color: var(--btn-hover-color);
   color: var(--font-main-color);
 }
@@ -283,7 +292,6 @@ input{
 }
 
 .detailBtn:hover{
-  cursor: pointer;
   background-color: var(--btn-hover-color);
   color: var(--font-main-color);
 }
@@ -302,7 +310,6 @@ input{
   border-radius: 8px;
 }
 .addHistoryBtn:hover{
-  cursor: pointer;
   background-color: var(--btn-hover-color);
   color: var(--font-main-color);
 }
@@ -310,9 +317,7 @@ input{
 /* addEditCustomer page */
 
 #addCustomerForm{
-  background-color: var(--main-color);
   padding: 5%;
-  border-radius: 8px;
 }
 
 .cusInput{
@@ -428,10 +433,8 @@ input{
 
 /* product config page */
 .addEditModelDiv{
-  background-color: var(--darker-main-color);
-  border-radius: 8px;
-  padding: 1% 2%;
   margin-bottom: 2%;
+  padding: 2%;
 }
 
 #newBrandH3{
@@ -453,4 +456,85 @@ input{
 
 #editHottubDiv{
   display: none;
+}
+
+@media screen and (max-width: 1350px) {
+
+  /* navigation area */
+  .pageLogo{
+    top: 7%;
+  }
+
+  /* customerList page */
+
+  #tableHeader{
+    display: none;
+  }
+
+  .custmerData {
+    display: block;
+    margin-bottom: 5%;
+    background-color: var(--darker-main-color);
+    border-radius: 8px;
+    color: var(--font-main-color);
+    padding: 3% 10%;
+  }
+
+  .cusLiSpan{
+    display: inline-block;
+    padding-right: 20px;
+  }
+
+  .sIcons {
+    display: block;
+  }
+
+  .data{
+    margin-bottom: 1%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+
+  /* navigation area */
+
+  .nav{
+    display: none;
+  }
+
+  .nav.show{
+    display: block;
+  }
+
+  .pageLogo{
+    top: 8%;
+  }
+
+  .topNav{
+    padding: 5% 0 5% 12%;
+  }
+
+  ul.hamburgerMenu{
+    display: block;
+    position: absolute;
+    top: 8%;
+    right: 8%;
+  }
+
+  li.hamburgerMenu{
+    width: 45px;
+    height: 6px;
+    margin-bottom: 10px;
+    background-color: var(--font-main-color);
+  }
+
+  .nav{
+    padding-top: 5%;
+  }
+
+  .navLi{
+    display: block;
+    text-align: right;
+
+  }
 }

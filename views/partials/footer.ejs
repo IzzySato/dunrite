@@ -1,4 +1,6 @@
-<script type="module" src="/javascripts/<%-script%>.js"></script>
+<% scripts.forEach((script) => { %>
+  <script type="module" src="/javascripts/<%-script%>.js"></script>
+<%})%>
 </body>
 
 </html>

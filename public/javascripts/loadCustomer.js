@@ -24,22 +24,22 @@ const customerTemplate = ({
 }) =>
   `    
   <ul class="custmerData">
-  <li class="data cusID">${_id}</li>
-  <li class="data">${customerFirstName} ${customerLastName}</li>
-  <li class="data">${email}</li>
-  <li class="data">${phone}</li>
-  <li class="data cusAddress">${street} ${city} ${postcode} ${country}</li>
-  <li class="data">
-    <div>
-      <div class="sIcons">
-        <i class="fas fa-edit editCustomer customerPageIcon" data-id="${_id}"></i>
-        <i class="fas fa-trash-alt removeCustomer customerPageIcon" data-id="${_id}"></i>
-        <a class="detailBtn" href="customerDetail/${_id}" data-id="${_id}">Details</a>
+    <li class="data cusID"><span class="cusLiSpan">Id: </span>${_id}</li>
+    <li class="data"><span class="cusLiSpan">Name: </span>${customerFirstName} ${customerLastName}</li>
+    <li class="data"><span class="cusLiSpan">email:  </span>${email}</li>
+    <li class="data"><span class="cusLiSpan">Phone: </span>${phone}</li>
+    <li class="data cusAddress"><span class="cusLiSpan">Address: </span>${street} ${city} ${postcode} ${country}</li>
+    <li class="data">
+      <div>
+        <div class="sIcons">
+          <i class="fas fa-edit editCustomer customerPageIcon pointer" data-id="${_id}"></i>
+          <i class="fas fa-trash-alt removeCustomer customerPageIcon pointer" data-id="${_id}"></i>
+          <a class="detailBtn pointer" href="customerDetail/${_id}" data-id="${_id}">Details</a>
+        </div>
+        <button data-id="${_id}" data-name="${customerFirstName} ${customerLastName}" class="addHistoryBtn pointer">Add Work History</button>
       </div>
-      <button data-id="${_id}" data-name="${customerFirstName} ${customerLastName}" class="addHistoryBtn">Add Work History</button>
-    </div>
-  </li>
-</ul>`;
+    </li>
+  </ul>`;
 
 const loadCustomer = () => {
   const html = data.customers.map(person => customerTemplate(person)).join('');

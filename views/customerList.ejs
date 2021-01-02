@@ -1,18 +1,32 @@
 <%- include('partials/head')%>
 <div class="headerDiv">
-  <a href="/"><img class="pageLogo" src="/images/logo.png" alt="logo"></a>
-  <ul class="nav">
-    <a class="navLink" href="/logout"><li class="navLi logout">Logout</li></a>
-    <a class="navLink" href="/addEditCustomer"><li class="navLi">Add New Customer</li></a>
-    <a class="navLink" href="/productConfig"><li class="navLi">Product Configuration</li></a>
-  </ul>
-  <div id="searchDiv">
-    <label for="seach"></label>
-    <input id="searchInput" class="inputs" type="search" name="search" placeholder="Search...   first name, last name, or phone number">
-    <i id="searchCustomerIcon" class="fas fa-search"></i>
-    <div id="foundCustomerDiv">
-      <!-- data will be here if found the customer -->
-    </div>
+  <div class="topNav boxOne">
+    <a href="/"><img class="pageLogo pointer" src="/images/logo.png" alt="logo"></a>
+    <ul class="hamburgerMenu pointer">
+      <li class="hamburgerMenu"></li>
+      <li class="hamburgerMenu"></li>
+      <li class="hamburgerMenu"></li>
+    </ul>
+    <ul class="nav">
+      <a class="navLink" href="/logout">
+        <li class="navLi logout">Logout</li>
+      </a>
+      <a class="navLink" href="/addEditCustomer">
+        <li class="navLi">Add New Customer</li>
+      </a>
+      <a class="navLink" href="/productConfig">
+        <li class="navLi">Product Configuration</li>
+      </a>
+    </ul>
+  </div>
+</div>
+<div id="searchDiv">
+  <label for="seach"></label>
+  <input id="searchInput" class="inputs" type="search" name="search"
+    placeholder="Search...   first name, last name, or phone number">
+  <i id="searchCustomerIcon" class="fas fa-search pointer"></i>
+  <div id="foundCustomerDiv">
+    <!-- data will be here if found the customer -->
   </div>
 </div>
 <h2 class="subTitle">All Customers</h2>
@@ -24,16 +38,21 @@
     <li class="col">Phone number</li>
     <li class="col">Address</li>
     <li>
+      <!-- icons column -->
     </li>
   </ul>
+
+  <!-- The below form disply when users clicked the Add Work History button (data insert from client side)-->
   <div id="mainAddWorkDiv" class="workForm">
-    <p id="cusNameP"></p>
+    <p id="cusNameP">
+      <!-- customerName cinsert from client side -->
+    </p>
     <label for="date">Date</label>
     <input id="cusDateInput" class="inputs cusInput" type="date" name="date"><br>
     <label for="work">Service</label>
     <input id="cusWorkInput" class="inputs cusInput" type="text" name="work" placeholder="e.g. Fixed pump"><br>
-    <button id="cusSubmitWork" class="submitNewWork smallBtnOne" >Submit</button>
-    <button id="cusWorkCancel" class="cancel smallBtnOne" >Cancel</button>
+    <button id="cusSubmitWork" class="submitNewWork smallBtnOne">Submit</button>
+    <button id="cusWorkCancel" class="cancel smallBtnOne">Cancel</button>
   </div>
 
   <div id="dataDiv">

@@ -3,7 +3,7 @@ const router = express.Router();
 
 //GET load register page
 router.get('/', (req, res) => {
-  res.render('register', {script: 'register'});
+  res.render('register', {scripts: ['register', 'util']});
 });
 
 //POST register a new user

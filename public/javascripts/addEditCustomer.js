@@ -1,7 +1,7 @@
 import * as ProductUtil from './productUtil.js';
 
-//add cutomer in the database
-const addCustomer = (
+//add or edit customer
+const addEditCustomer = (
   id,
   customerFirstName,
   customerLastName,
@@ -27,7 +27,7 @@ const addCustomer = (
     comments
   };
 
-  fetch('/addEditCustomer/add', {
+  fetch('/addEditCustomer/addEdit', {
       method: 'POST',
       body: JSON.stringify(customer),
       headers: {
@@ -60,7 +60,7 @@ const processClick = (target) => {
       model
     };
 
-    addCustomer(
+    addEditCustomer(
       id,
       customerFirstName,
       customerLastName,
@@ -82,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const model = document.querySelector('#modelSelect').dataset.name;
   const brandSelect = document.querySelector('#brandSelect');
   const modelSelect = document.querySelector('#modelSelect');
-  ProductUtil.insertBrandOptionsHTML(id, brandSelect, modelSelect, brand, model) ;
+  ProductUtil.insertBrandOptionsHTML(id, brandSelect, modelSelect, brand, model);
+
   document.addEventListener('click', ({
     target
   }) => processClick(target));

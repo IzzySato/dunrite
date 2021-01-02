@@ -6,7 +6,11 @@ router.get('/:id', async (req, res) => {
   if(req.isAuthenticated()){
     const { id } = req.params;
     const data = await req.Customer.findOne({_id: id});
-    res.render('customerDetail', {script: 'customerDetail', data});
+    res.render( 'customerDetail', 
+    { 
+      scripts: ['customerDetail', 'util'], 
+      data
+    });
   }else{
     console.log('You need to login');
     res.redirect('/');
@@ -29,7 +33,6 @@ router.get('/data/:id', async (req, res) => {
 router.get('/workHistory/:id', async (req, res) => {
   if(req.isAuthenticated){
     const {id} = req.params;
-    console.log('work called');
     const data = await req.Work.find({customerId: id});
     res.json(data);
   }else{

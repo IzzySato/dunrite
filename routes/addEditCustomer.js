@@ -6,7 +6,7 @@ router.get('/', async (req, res) => {
   if (req.isAuthenticated()) {
     const product = await req.Product.find();
     res.render('addEditCustomer', {
-      script: 'addEditCustomer',
+      scripts: ['addEditCustomer', 'util'],
       subTitle: 'Create a new Customer',
       data: {},
       product
@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
     });
     const product = await req.Product.find();
     res.render('addEditCustomer', {
-      script: 'addEditCustomer',
+      scripts: ['addEditCustomer', 'util'],
       subTitle: 'Edit Customer',
       data,
       product
@@ -37,8 +37,8 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-//POST add a new customer to the customer database
-router.post('/add', async (req, res) => {
+//POST add a new customer or edit the customer
+router.post('/addEdit', async (req, res) => {
   const {
     body: {
       id,
