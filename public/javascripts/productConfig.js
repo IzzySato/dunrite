@@ -14,7 +14,7 @@ const getData = () => new Promise((res, rej)=> {
 //html template used for addBrandHTML()
 const hottubBrandTemplate = ({_id, hottub: {brandName}}) => `
 <li data-id=${_id}>${brandName}
-  <i data-id=${_id}  data-name="${brandName}" class="fas fa-edit editBrandIcon modelIcon"></i>
+  <i data-id=${_id}  data-name="${brandName}"  data-brand="${brandName}" data-model="" class="fas fa-edit editBrandIcon modelIcon"></i>
   <i data-id=${_id} class="fas fa-trash-alt removeBrandIcon modelIcon"></i>
 </li>
 `;
@@ -46,9 +46,9 @@ const addModelHTML = (data) => {
   modelUl.innerHTML = modelHTML;
 };
 
-//POST add or edit brand
-const addEditBrand = (id, brandName) => {
-  const brand = {id, brandName};
+//POST add or edit brand (status is new or edit)
+const addEditBrand = (status, brandName, newBrandName) => {
+  const brand = {status, brandName, newBrandName};
   fetch('/productConfig/addEditBrand', {
       method: 'POST',
       body: JSON.stringify(brand),
@@ -56,13 +56,14 @@ const addEditBrand = (id, brandName) => {
         "Content-type": "application/json; charset=UTF-8"
       }
     })
-    .then(res => res.json());
-    // .then(({url}) => location.href=url);
+    .then(res => res.json())
+    .then(({url}) => location.href=url);
 };
 
-//POST add or edit model (name is add or edit)
-const addEditModel = (name, brandName, model) => {
-  const newOrEditModel = {name, brandName, model};
+//POST add or edit model (status is new or edit)
+const addEditModel = (status, brandName, model, newModel) => {
+  console.log('addEditModel ' + newModel);
+  const newOrEditModel = {status, brandName, model, newModel};
   fetch('/productConfig/addEditModel', {
       method: 'POST',
       body: JSON.stringify(newOrEditModel),
@@ -135,36 +136,24 @@ const processClick = (target) => {
   }
 
   if(target.matches('#addBrandBtn')){
-    const newBrand = document.querySelector('#newBrand').value;
-    const id = 'new';
-    addEditBrand(id, newBrand);
+    const newBrandName = document.querySelector('#newBrand').value;
+    const brand = '';
+    const status = 'new';
+    addEditBrand(status, brand, newBrandName);
   }
 
   if(target.matches('#addModelBtn')) {
     const brandName = document.querySelector('#brandNameSelect').value;
-    const newModel = document.querySelector('#newModel').value;
-    const name = 'new';
-    addEditModel(name, brandName, newModel);
-  }
-
-    //edit brandName or model
-    if(target.matches('#editHottub')) {
-      //the input is brandName or model
-      const inputVal = document.querySelector('#editInput');
-      const {dataset: {brand, model}} = inputVal;
-      const name = 'edit';
-      console.log(`brand = ${brand} model = ${model} inputVal = ${inputVal}`);
-      addEditBrand(name, brand, model);
-    }
-
-  if(target.matches('#seachModelBtn')){
-    const searchVal = document.querySelector('#seachModelInput').value;
-    searchHottub(searchVal);
+    const model = document.querySelector('#newModel').value;
+    const status = 'new';
+    const newVal = '';
+    addEditModel(status, brandName, model, newVal);
   }
 
   if(target.matches('.editBrandIcon')) {
     const editHottubDiv = document.querySelector('#editHottubDiv');
     const editInput = document.querySelector('#editInput');
+    editInput.dataset.brand = target.dataset.brand;
     openEditForm(target, editHottubDiv, editInput);
   }
 
@@ -174,6 +163,30 @@ const processClick = (target) => {
     editInput.dataset.brand = target.dataset.brand;
     editInput.dataset.model = target.dataset.model;
     openEditForm(target, editHottubDiv, editInput);
+  }
+    //edit brandName or model
+    if(target.matches('#editHottub')) {
+      //the input is brandName or model
+      const input = document.querySelector('#editInput');
+      const newVal = document.querySelector('#editInput').value;
+      const {dataset: {brand, model}} = input;
+      const status = 'edit';
+      console.log(`brand = ${brand} model = ${model} inputVal = ${newVal}`);
+
+      //If data-model is empty === change brand
+      if(model === ''){
+        console.log('model is empty, change brand');
+        addEditBrand(status, brand, newVal);
+      }else{
+        //change the model
+        console.log('change model');
+        addEditModel(status, brand, model, newVal);
+      }
+    }
+
+  if(target.matches('#seachModelBtn')){
+    const searchVal = document.querySelector('#seachModelInput').value;
+    searchHottub(searchVal);
   }
 };
 

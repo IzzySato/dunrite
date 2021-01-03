@@ -1,0 +1,18 @@
+<div class="headerDiv">
+  <div class="topNav boxOne">
+    <a href="/"><img class="pageLogo pointer" src="/images/logo.png" alt="logo"></a>
+    <ul class="hamburgerMenu pointer">
+      <li class="hamburgerMenu"></li>
+      <li class="hamburgerMenu"></li>
+      <li class="hamburgerMenu"></li>
+    </ul>
+
+    <ul class="nav">
+      <% navLinks.forEach(nav => {%>
+        <a class="navLink" href="<%- nav.link %>">
+          <li class="navLi logout"><%- nav.name %></li>
+        </a>
+      <%})%>
+    </ul>
+  </div>
+</div>

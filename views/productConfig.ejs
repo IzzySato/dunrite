@@ -1,25 +1,6 @@
 <%- include('partials/head')%>
-<div class="headerDiv">
-  <div class="topNav boxOne">
-    <a href="/"><img class="pageLogo pointer" src="/images/logo.png" alt="logo"></a>
-    <ul class="hamburgerMenu pointer">
-      <li class="hamburgerMenu"></li>
-      <li class="hamburgerMenu"></li>
-      <li class="hamburgerMenu"></li>
-    </ul>
-    <ul class="nav">
-      <a class="navLink" href="/logout">
-        <li class="navLi logout">Logout</li>
-      </a>
-      <a class="navLink" href="/customerList">
-        <li class="navLi">Customer List</li>
-      </a>
-      <a class="navLink" href="/addEditCustomer">
-        <li class="navLi">Add New Customer</li>
-      </a>
-    </ul>
-  </div>
-</div>
+<%- include('partials/nav')%>
+
 <h2 class="subTitle">Product Configuration</h2>
 <section id="configSection">
   <div id="addModelBrandDiv" class="addEditModelDiv boxTwo">

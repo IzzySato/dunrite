@@ -1,4 +1,6 @@
 <%- include('partials/head')%>
+<%- include('partials/nav')%>
+
 <% const {
   id = 'new',
   customerFirstName = '',
@@ -13,27 +15,7 @@
     comments= ''
 } = data;
  %>
- <div class="headerDiv">
-  <div class="topNav boxOne">
-    <a href="/"><img class="pageLogo pointer" src="/images/logo.png" alt="logo"></a>
-    <ul class="hamburgerMenu pointer">
-      <li class="hamburgerMenu"></li>
-      <li class="hamburgerMenu"></li>
-      <li class="hamburgerMenu"></li>
-    </ul>
-    <ul class="nav">
-      <a class="navLink" href="/logout">
-        <li class="navLi logout">Logout</li>
-      </a>
-      <a class="navLink" href="/customerList">
-        <li class="navLi">Customer List</li>
-      </a>
-      <a class="navLink" href="/productConfig">
-        <li class="navLi">Product Configuration</li>
-      </a>
-    </ul>
-  </div>
-</div>
+
 <h2 id="form" data-id="<%- id%>" class="subTitle"><%- subTitle %></h2>
 <div id="addCustomerForm" class="boxOne">
   <label for="customerFirstName">First Name</label>
@@ -79,5 +61,8 @@
   <label for="comments">Comments</label><br>
   <textarea name="comments" id="comments" cols="100" rows="10"><%- comments%></textarea><br>
   <button id="newCustomerButton" class="btn">Submit</button>
+  <div class="successDiv">
+    <!-- message will be here clicked submit -->
+  </div>
 </div>
 <%- include('partials/footer') %>

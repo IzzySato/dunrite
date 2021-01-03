@@ -4,10 +4,29 @@ const router = express.Router();
 // GET loading customerDetailPage
 router.get('/:id', async (req, res) => {
   if(req.isAuthenticated()){
+    const navLinks = [
+      {
+        name: 'Logout',
+        link: '/logout'
+      },
+      {
+        name: 'Customer List',
+        link: '/customerList'
+      },
+      {
+        name: 'Add New Customer',
+        link: '/addEditCustomer'
+      },
+      {
+        name: 'Product Configuration',
+        link: '/productConfig'
+      },
+    ];
     const { id } = req.params;
     const data = await req.Customer.findOne({_id: id});
     res.render( 'customerDetail', 
     { 
+      navLinks,
       scripts: ['customerDetail', 'util'], 
       data
     });

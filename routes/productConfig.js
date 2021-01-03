@@ -1,10 +1,26 @@
 const express = require('express');
 const router = express.Router();
 
+const navLinks = [
+  {
+    name: 'Logout',
+    link: '/logout'
+  },
+  {
+    name: 'Customer List',
+    link: '/customerList'
+  },
+  {
+    name: 'Add New Customer',
+    link: '/addEditCustomer'
+  }
+];
+
 //GET load the product congifg page
 router.get('/', (req, res) => {
   if (req.isAuthenticated()) {
     res.render('productConfig', {
+      navLinks,
       scripts: ['productConfig', 'util']
     })
   } else {
@@ -33,6 +49,7 @@ router.get('/brandDelete/:id', async (req, res) => {
     });
     // console.log(req.chalk.yellow(`deleteing id is ${id}`));
     res.render('productConfig', {
+      navLinks,
       scripts: ['productConfig', 'util']
     });
   } else {
@@ -72,31 +89,31 @@ router.post('/addEditBrand', async (req, res) => {
     try {
       const {
         body: {
-          id,
-          brandName
+          status,
+          brandName,
+          newBrandName
         }
       } = req;
 
-      if(id === 'new'){
+      if(status === 'new'){
         const newProduct = new req.Product({
           hottub: {
-            brandName
+            brandName : newBrandName
           }
         });
         await newProduct.save();
       }else{
         try{
-          console.log('Edit brandName ' + brandName);
           await req.Product.updateOne({'hottub.brandName': brandName}, {
-            brandName
+            'hottub.brandName': newBrandName
           });
         }catch(err) {
           console.log(err);
         }
       }
-      // res.json({
-      //   url: 'productConfig'
-      // });
+      res.json({
+        url: 'productConfig'
+      });
 
     } catch (err) {
       console.log(err);
@@ -113,32 +130,41 @@ router.post('/addEditModel', async (req, res) => {
     try {
       const {
         body: {
-          name,
+          status,
           brandName,
-          model
+          model,
+          newModel
         }
       } = req;
+
+      let newModelArray = [];
       await req.Product.findOne({
         'hottub.brandName': brandName
       }, async (err, foundProduct) => {
         if (err) console.log(err);
         else {
-          if(name === 'new'){
+          if(status === 'new'){
             foundProduct.hottub.model.push(model);
             await foundProduct.save();
           }else{
-            const oldModelName = foundProduct.hottub.model.find(m => m === name);
-            console.log('model is ' + model + ' oldName is ' + oldModelName);
-            oldModelName = model;
+            foundProduct.hottub.model.forEach(p => {
+              if(p === model){
+                console.log(p);
+                console.log('new model is ' + newModel);
+                newModelArray.push(newModel)
+              }else{
+                console.log(p);
+                newModelArray.push(p);
+              }
+            });
+            console.log(newModelArray);
+            foundProduct.hottub.model = newModelArray;
             await foundProduct.save();
           }
           res.json({
             url: 'productConfig'
           });
         }
-      });
-      res.render('productConfig', {
-        scripts: ['productConfig', 'util']
       });
     } catch (err) {
       console.log(err);

@@ -14,6 +14,8 @@
   --facebook-hover-color: #213257;
   --btn-color: rgb(58, 80, 114);
   --btn-hover-color: rgb(24, 33, 46);
+  --success-color: rgb(66, 165, 107);
+  --error-color: rgb(170, 19, 19);
 }
 
 body {
@@ -118,6 +120,12 @@ ul.hamburgerMenu{
 .boxTwo{
   background-color: var(--darker-main-color);
   border-radius: 8px;
+}
+
+#successSection{
+  background-color: var(--success-color);
+  padding: 2%;
+  text-align: center;
 }
 
 /* index (login page) */
@@ -536,5 +544,29 @@ ul.hamburgerMenu{
     display: block;
     text-align: right;
 
+  }
+}
+
+@media screen and (max-width: 950px) {
+  /* navigation area */
+  .pageLogo{
+    top: 7%;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  /* navigation area */
+  .pageLogo{
+    top: 6%;
+  }
+
+  ul.hamburgerMenu{
+    top: 7%;
+  }
+
+  /* customer detail page */
+
+  #detailDiv{
+    display: block;
   }
 }

@@ -1,11 +1,27 @@
 const express = require('express');
 const router = express.Router();
 
+const navLinks = [
+  {
+    name: 'Logout',
+    link: '/logout'
+  },
+  {
+    name: 'Customer List',
+    link: '/customerList'
+  },
+  {
+    name: 'Product Configuration',
+    link: '/productConfig'
+  },
+];
+
 //GET load add a new customer form
 router.get('/', async (req, res) => {
   if (req.isAuthenticated()) {
     const product = await req.Product.find();
     res.render('addEditCustomer', {
+      navLinks,
       scripts: ['addEditCustomer', 'util'],
       subTitle: 'Create a new Customer',
       data: {},
@@ -26,7 +42,9 @@ router.get('/:id', async (req, res) => {
       _id: id
     });
     const product = await req.Product.find();
+    
     res.render('addEditCustomer', {
+      navLinks,
       scripts: ['addEditCustomer', 'util'],
       subTitle: 'Edit Customer',
       data,

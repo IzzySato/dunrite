@@ -1,5 +1,6 @@
 import * as WorkHistoryUtil from './workHistoryUtil.js';
 
+//all customers store in data
 const data = {};
 
 const getCustomerData = () => new Promise((res, rej) => {
