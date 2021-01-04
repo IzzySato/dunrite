@@ -1,5 +1,4 @@
 import * as ProductUtil from './productUtil.js';
-import * as Util from './util.js';
 
 //add or edit customer
 const addEditCustomer = (
@@ -38,8 +37,7 @@ const addEditCustomer = (
     .then(res => res.json())
     .then(({
       url
-    }) => 
-      location.href = url);
+    }) => location.href = url);
 };
 
 const processClick = (target) => {
@@ -74,13 +72,8 @@ const processClick = (target) => {
       country,
       hottubModel,
       comments
-    );
-    const div = document.querySelector('#successDiv');
-    if(id === 'new'){
-      Util.successMessage(div, 'Added a newCustomer!');
-    }else{
-      Util.successMessage(div, `Editted ${customerFirstName} ${customerLastName}!`);
-    }
+    )
+    Util.successMessage('saved');
   }
 };
 

@@ -71,14 +71,6 @@ li{
   background-color: var(--light-main-color);
 }
 
-input{
-  padding-left: 15px;
-}
-
-::placeholder{
-  padding-left: 15px;
-}
-
 .subTitle{
   color: var(--font-sub-color)
 }
@@ -90,12 +82,12 @@ input{
 }
 
 .topNav{
-  padding: 2% 0 2% 12%;
+  padding: 2% 0 2% 15%;
 }
 
 .navLi{
   display: inline;
-  padding-right: 10px;
+  padding-right: 3%;
 }
 
 .navLink{
@@ -128,6 +120,14 @@ ul.hamburgerMenu{
   text-align: center;
 }
 
+.inputs{
+  width: 65%;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 25px;
+  padding: 1% 2%;
+}
+
 /* index (login page) */
 
 .logo{
@@ -136,9 +136,7 @@ ul.hamburgerMenu{
   top: 8%;
 }
 .form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
   background-color: var(--main-color);
   padding: 2% 0 5% 0;
   position: relative;
@@ -151,13 +149,6 @@ ul.hamburgerMenu{
 }
 
 .lablels{
-  margin-bottom: 25px;
-}
-.inputs{
-  width: 500px;
-  height: 30px;
-  border: none;
-  border-radius: 6px;
   margin-bottom: 25px;
 }
 
@@ -194,6 +185,10 @@ ul.hamburgerMenu{
   background-color: var(--facebook-hover-color);
 }
 
+.loginInput{
+  width: 50%;
+}
+
 .buttonTitle{
   display: inline;
   padding-left: 15px;
@@ -220,19 +215,24 @@ ul.hamburgerMenu{
 /* customerList page */
 
 #searchDiv{
-  padding: 2% 5%;
   border-radius: 8px;
-  padding-left: 0;
+  margin-top: 2%;
 }
 
 #searchInput{
   border: 1px solid black;
+  padding-left: 4%;
+}
+
+#searchInputArea{
+  position: relative;
 }
 
 #searchCustomerIcon{
-  font-size: 1.4em;
+  position: absolute;
+  top: 20%;
+  left: 1%;
   color: var(--main-color);
-  top: 30px;
 }
 
 #foundCustomerDiv{
@@ -333,6 +333,7 @@ ul.hamburgerMenu{
 }
 
 #comments{
+  width: 100%;
   margin-top: 20px;
   border-radius: 8px;
 }
@@ -371,11 +372,6 @@ ul.hamburgerMenu{
 
 .modelIcon{
   margin-left: 1%;
-}
-
-.modelInputs{
-  width: 350px;
-  height: 20px;
 }
 
 .modelLabel{
@@ -502,10 +498,10 @@ ul.hamburgerMenu{
   }
 }
 
-@media screen and (max-width: 1100px) {
+/* iPadPro screen size */
+@media screen and (max-width: 1030px) {
 
   /* navigation area */
-
   .nav{
     display: none;
   }
@@ -515,24 +511,24 @@ ul.hamburgerMenu{
   }
 
   .pageLogo{
-    top: 8%;
+    top: 6%;
   }
 
   .topNav{
-    padding: 5% 0 5% 12%;
+    padding: 5% 0 5% 15%;
   }
 
   ul.hamburgerMenu{
     display: block;
     position: absolute;
-    top: 8%;
+    top: 6%;
     right: 8%;
   }
 
   li.hamburgerMenu{
     width: 45px;
     height: 6px;
-    margin-bottom: 10px;
+    margin-bottom: 25%;
     background-color: var(--font-main-color);
   }
 
@@ -543,30 +539,95 @@ ul.hamburgerMenu{
   .navLi{
     display: block;
     text-align: right;
-
-  }
-}
-
-@media screen and (max-width: 950px) {
-  /* navigation area */
-  .pageLogo{
-    top: 7%;
-  }
-}
-
-@media screen and (max-width: 950px) {
-  /* navigation area */
-  .pageLogo{
-    top: 6%;
   }
 
-  ul.hamburgerMenu{
-    top: 7%;
+  /* login page */
+  .socialBtn{
+    margin: 5% 20%;
   }
 
   /* customer detail page */
-
   #detailDiv{
     display: block;
+  }
+}
+
+@media screen and (max-width: 850px) {
+    /* navigation area */
+    .pageLogo{
+      top: 5%;
+    }
+  
+    ul.hamburgerMenu{
+      top: 6%;
+    }
+
+    .topNav{
+      padding: 10% 0 5% 12%;
+    }
+}
+
+@media screen and (max-width: 680px) {
+    /* navigation area */
+    .pageLogo{
+      top: 4%;
+    }
+  
+    ul.hamburgerMenu{
+      top: 5%;
+    }
+}
+
+  /* iPhone X size */
+@media screen and (max-width: 500px) {
+  body{
+    padding: 2%;
+  }
+
+  /* navigation area */
+  .topNav{
+    padding: 18% 0 5% 12%;
+  }
+
+  .pageLogo{
+    top: 3%;
+  }
+
+  ul.hamburgerMenu{
+    top: 4%;
+  }
+
+  .inputs{
+    width: 100%;
+  }
+
+  /* login page */
+  .loginInput{
+    width: 80%;
+  }
+
+  .socialBtn{
+    margin: 8% 4%;
+    padding: 3% 13%;
+  }
+
+  /* customer List page */
+  #searchInput{
+    padding-left: 9%;
+  }
+
+  /* addEditCustomer page */
+  .cusInput{
+    margin-left: 0;
+    width: 95%;
+  }
+  .hottubLabel{
+    display: block;
+    margin-bottom: 5%;
+  }
+
+  /* product config page */
+  #editHottubDiv{
+    margin-top: 10%;
   }
 }

@@ -44,7 +44,7 @@
     placeholder="e.g. canada"><br>
 
   <h3 class="inoutSectionTitle">Hottub</h3>
-  <label for="model">Hottub Model</label>
+  <label class="hottubLabel" for="model">Hottub Model</label>
   <select data-name="<%- hottubModel.brand%>" name="brand" id="brandSelect" class="brandSelect" >
     <!-- insert data from addEditCustomer.js (client side) -->
   </select>
@@ -54,15 +54,12 @@
   </select>
 
   <div id="modelBtnDiv">
-    <span class="modelText">You cannot find a mode or brand?</span>
-    <a href="productConfig" id="addModelDivOpenBtn" class="smallBtnOne">Add a New Model / Brand</a>
+    <span class="modelText hottubLabel">You cannot find a mode or brand?</span>
+    <a href="productConfig" id="addModelDivOpenBtn" class="smallBtnOne">Product Configuration</a>
   </div>
 
   <label for="comments">Comments</label><br>
   <textarea name="comments" id="comments" cols="100" rows="10"><%- comments%></textarea><br>
   <button id="newCustomerButton" class="btn">Submit</button>
-  <div class="successDiv">
-    <!-- message will be here clicked submit -->
-  </div>
 </div>
 <%- include('partials/footer') %>

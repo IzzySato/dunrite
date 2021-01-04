@@ -87,15 +87,21 @@ const processClick = (target) => {
     const formDiv = document.querySelector('.workForm');
     formDiv.style.display = 'none';
   }
-  if(target.matches('#searchCustomerIcon')){
-    const searchVal = document.querySelector('#searchInput').value;
-    serachCustomer(searchVal);
-  }
 };
 
 document.addEventListener('DOMContentLoaded', function () {
   getCustomerData().then(() => {
     loadCustomer();
+
     document.addEventListener('click', ({target}) => processClick(target));
+    const inputArea = document.querySelector('#searchInput');
+
+    inputArea.addEventListener('keyup', (event) => {
+      if(event.keyCode === 13) {
+        const searchVal = document.querySelector('#searchInput').value;
+        serachCustomer(searchVal);
+      }
+    });
+    
   });
 });
