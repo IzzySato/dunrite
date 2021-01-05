@@ -1,4 +1,5 @@
 import * as ProductUtil from './productUtil.js';
+import * as Util from './util.js';
 
 const data = {};
 
@@ -57,7 +58,13 @@ const addEditBrand = (status, brandName, newBrandName) => {
       }
     })
     .then(res => res.json())
-    .then(({url}) => location.href=url);
+    .then(({url}) => {
+      Util.insertMessage(messageDiv(), false, 'Saved Brand');
+      const btn = document.querySelector('.btnMessage');
+      btn.addEventListener('click', () => {
+        location.href = url;
+      });
+    });
 };
 
 //POST add or edit model (status is new or edit)
@@ -72,7 +79,13 @@ const addEditModel = (status, brandName, model, newModel) => {
       }
     })
     .then(res => res.json())
-    .then(({url}) => location.href=url);
+    .then(({url}) => {
+      Util.insertMessage(messageDiv(), false, 'Saved Model');
+      const btn = document.querySelector('.btnMessage');
+      btn.addEventListener('click', () => {
+        location.href = url;
+      });
+    });
 };
 
 const getBrandNameById = (id) => {
@@ -91,7 +104,13 @@ const removeModel = (brandName, model) => {
       }
     })
     .then(res => res.json())
-    .then(({url}) => location.href=url);
+    .then(({url}) => {
+      Util.insertMessage(messageDiv(), false, 'Removed Model');
+      const btn = document.querySelector('.btnMessage');
+      btn.addEventListener('click', () => {
+        location.href = url;
+      });
+    });
 };
 
 //Search brand or model function
@@ -122,10 +141,16 @@ const openEditForm = (target, openDiv, input) => {
   input.value = name;
 };
 
+const messageDiv = () => document.querySelector('#productConfigMessageDiv');
+
 const processClick = (target) => {
-  if (target.matches('.removeBrandIcon')) {
+  if(target.matches('.removeBrandIcon')) {
     const {dataset: {id}} = target;
-    location.href=`/productConfig/brandDelete/${id}`;
+    Util.insertMessage(messageDiv(), false, 'Removed Brand');
+    const btn = document.querySelector('.btnMessage');
+    btn.addEventListener('click', () => {
+      location.href=`/productConfig/brandDelete/${id}`;
+    });
   }
 
   if(target.matches('.modelRemoveIcon')){
@@ -139,7 +164,15 @@ const processClick = (target) => {
     const newBrandName = document.querySelector('#newBrand').value;
     const brand = '';
     const status = 'new';
-    addEditBrand(status, brand, newBrandName);
+    
+    let brandExist = false;
+    data.products.forEach(product => {
+      if(product.hottub.brandName.toLowerCase() === newBrandName.toLowerCase()) brandExist = true;
+    });
+
+    if(newBrandName === '') Util.insertMessage(messageDiv(), true, 'Brand name must not be empty');
+    else if(brandExist) Util.insertMessage(messageDiv(), true, `${newBrandName} is already in the database`);
+    else addEditBrand(status, brand, newBrandName);
   }
 
   if(target.matches('#addModelBtn')) {
@@ -147,7 +180,10 @@ const processClick = (target) => {
     const model = document.querySelector('#newModel').value;
     const status = 'new';
     const newVal = '';
-    addEditModel(status, brandName, model, newVal);
+
+    if(brandName === '') Util.insertMessage(messageDiv(), true, 'Brand name must be picked');
+    else if(model === '') Util.insertMessage(messageDiv(), true, 'Model name must not be empty');
+    else addEditModel(status, brandName, model, newVal);
   }
 
   if(target.matches('.editBrandIcon')) {
@@ -168,20 +204,21 @@ const processClick = (target) => {
     if(target.matches('#editHottub')) {
       //the input is brandName or model
       const input = document.querySelector('#editInput');
-      const newVal = document.querySelector('#editInput').value;
+      const newVal =  input.value;
       const {dataset: {brand, model}} = input;
       const status = 'edit';
-      console.log(`brand = ${brand} model = ${model} inputVal = ${newVal}`);
 
-      //If data-model is empty === change brand
-      if(model === ''){
-        console.log('model is empty, change brand');
-        addEditBrand(status, brand, newVal);
-      }else{
-        //change the model
-        console.log('change model');
-        addEditModel(status, brand, model, newVal);
+      if(newVal === '') Util.insertMessage(messageDiv(), true, 'Invalid input value: must not be empty');
+      else{
+        //If data-model is empty === change brand
+        if(model === ''){
+          addEditBrand(status, brand, newVal);
+        }else{
+          //change the model
+          addEditModel(status, brand, model, newVal);
+        }
       }
+
     }
 
   if(target.matches('#seachModelBtn')){

@@ -1,3 +1,7 @@
+import * as Util from './util.js';
+
+const messageDiv = () => document.querySelector('#cusListMessageDiv');
+
 const openCloseWorkFormDiv = () => {
   const formDiv = document.querySelector('.workForm');
   if(formDiv.style.display === 'none'){
@@ -22,9 +26,13 @@ const addWork = (customerId, date, service) => {
       }
     })
     .then(res => res.json())
-    .then(({
-      url
-    }) => location.href = url);
+    .then(({url}) => {
+      Util.insertMessage(messageDiv(), false, 'Saved Work');
+      const btn = document.querySelector('.btnMessage');
+      btn.addEventListener('click', () => {
+        location.href = url;
+      });
+    });
 };
 
 export {

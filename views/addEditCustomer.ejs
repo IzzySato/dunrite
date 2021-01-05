@@ -16,34 +16,46 @@
 } = data;
  %>
 
+<div id="messageAddEditCustomer" class="messageDiv">
+  <!-- message here -->
+</div>
 <h2 id="form" data-id="<%- id%>" class="subTitle"><%- subTitle %></h2>
 <div id="addCustomerForm" class="boxOne">
+  <button class="smallBtnOne clearAllInput">Clear All</button><br>
   <label for="customerFirstName">First Name</label>
   <input value="<%- customerFirstName%>" id="customerFirstName" class="inputs cusInput" type="text"
-    name="customerFirstName" placeholder="first name" required><br>
+    name="customerFirstName" placeholder="first name" required>
+    <button data-name="customerFirstName" class="smallBtnOne clearInputVal">Clear</button><br>
   <label for="customerLastName">Last Name</label>
   <input value="<%- customerLastName%>" id="customerLastName" class="inputs cusInput" type="text"
-    name="customerLastName" placeholder="last name" required><br>
+    name="customerLastName" placeholder="last name" required>
+    <button data-name="customerLastName" class="smallBtnOne clearInputVal">Clear</button><br>
   <label for="phone">Phone Number</label>
   <input value="<%- phone%>" id="phone" class="inputs cusInput" type="tel" name="phone" placeholder="e.g. 6041231234"
-    required><br>
+    required>
+    <button data-name="phone" class="smallBtnOne clearInputVal">Clear</button><br>
   <label for="email">email</label>
   <input value="<%- email%>" id="email" class="inputs cusInput" type="email" name="email"
     placeholder="e.g. example@example.com">
-  <h3 class="inoutSectionTitle">Address</h3>
+    <button data-name="email" class="smallBtnOne clearInputVal">Clear</button><br>
+  <h3 class="inoutSectionTitle sectionTitle">Address</h3>
   <label for="street">Street</label>
   <input value="<%- street%>" id="street" class="inputs cusInput" type="text" name="street"
-    placeholder="e.g. 123 main street"><br>
+    placeholder="e.g. 123 main street">
+    <button data-name="street" class="smallBtnOne clearInputVal">Clear</button><br>
   <label for="city">City</label>
-  <input value="<%- city%>" id="city" class="inputs cusInput" type="text" name="city" placeholder="e.g. Vancouver"><br>
+  <input value="<%- city%>" id="city" class="inputs cusInput" type="text" name="city" placeholder="e.g. Vancouver">
+  <button data-name="city" class="smallBtnOne clearInputVal">Clear</button><br>
   <label for="postcode">Postcode</label>
   <input value="<%- postcode%>" id="postcode" class="inputs cusInput" type="text" name="postcode"
-    placeholder="e.g. V1A 3B6"><br>
+    placeholder="e.g. V1A 3B6">
+    <button data-name="postcode" class="smallBtnOne clearInputVal">Clear</button><br>
   <label for="country">Country</label>
   <input value="<%- country%>" id="country" class="inputs cusInput" type="text" name="country"
-    placeholder="e.g. canada"><br>
+    placeholder="e.g. canada">
+    <button data-name="country" class="smallBtnOne clearInputVal">Clear</button><br>
 
-  <h3 class="inoutSectionTitle">Hottub</h3>
+  <h3 class="inoutSectionTitle sectionTitle">Hottub</h3>
   <label class="hottubLabel" for="model">Hottub Model</label>
   <select data-name="<%- hottubModel.brand%>" name="brand" id="brandSelect" class="brandSelect" >
     <!-- insert data from addEditCustomer.js (client side) -->
@@ -58,8 +70,9 @@
     <a href="productConfig" id="addModelDivOpenBtn" class="smallBtnOne">Product Configuration</a>
   </div>
 
-  <label for="comments">Comments</label><br>
-  <textarea name="comments" id="comments" cols="100" rows="10"><%- comments%></textarea><br>
+  <label for="comments">Comments</label>
+  <button data-name="comments" class="smallBtnOne clearInputVal">Clear</button><br>
+  <textarea name="comments" id="comments" class="inputs" cols="100" rows="10"><%- comments%></textarea>
   <button id="newCustomerButton" class="btn">Submit</button>
 </div>
 <%- include('partials/footer') %>

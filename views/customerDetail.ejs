@@ -5,7 +5,7 @@
   const dataID = () => ` data-id="${data._id}"`;
 %>
 <div id="customerDetailDiv">
-  <h2>Customer Details</h2>
+  <h2 class="subTitle">Customer Details</h2>
   <div id="cusDetailIcons">
     <i class="fas fa-edit editCustomer customerPageIcon pointer" <%- dataID()%>>EDIT</i>
     <i class="fas fa-trash-alt removeCustomer customerPageIcon pointer" <%- dataID()%>>DELETE</i>
@@ -36,13 +36,14 @@
       <p class="cusDetailData"><%- data.comments%></p>
     </div>
     <div id="workDiv">
-      <button id="addNewWorkBtn" class="addHistoryBtn">ADD New History</button>
+      <button id="addNewWorkBtn" class="addHistoryBtn smallBtnOne">ADD New History</button>
       <div id="newWorkForm" class="workForm" >
         <label for="date">Date</label>
-        <input id="detailDateInput" class="inputs cusInput" type="date" name="date"><br>
+        <input id="detailDateInput" class="inputs cusInput workInput" type="date" name="date"><br>
         <label for="work">Service</label>
-        <input id="detailWorkInput" class="inputs cusInput" type="text" name="work" placeholder="e.g. Fixed pump"><br>
-        <button <%- dataID()%> class="submitNewWork  smallBtnOne" >Submit</button>
+        <input id="detailWorkInput" class="inputs cusInput workInput" type="text" name="work" placeholder="e.g. Fixed pump"><br>
+        <button <%- dataID()%> class="submitNewWork  smallBtnOne submitBtn" >Submit</button>
+        <button data-div="newWorkForm" class="smallBtnOne cancelEdit" >Cancel</button>
       </div>
 
         <div id="workDataDiv">

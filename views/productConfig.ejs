@@ -2,11 +2,14 @@
 <%- include('partials/nav')%>
 
 <h2 class="subTitle">Product Configuration</h2>
+<div id="productConfigMessageDiv" class="messageDiv">
+  <!-- error message will be here from client side (productConfig.js) -->
+</div>
 <section id="configSection">
   <div id="addModelBrandDiv" class="addEditModelDiv boxTwo">
     <section>
       <div id="addModelDiv">
-        <h3>Add a new Model</h3>
+        <h3 class="sectionTitle">Add a new Model</h3>
         <label class="hottubLabel" for="brand">Brand Name</label>
         <select id="brandNameSelect" name="brandName" class="brandSelect">
           <!-- get data from client js -->
@@ -17,7 +20,7 @@
       </div>
     </section>
     <section>
-      <h3 id="newBrandH3">Add a new Brand</h3>
+      <h3 id="newBrandH3" class="sectionTitle">Add a new Brand</h3>
       <label class="modelLabel hottubLabel" for="brand">Brand Name</label>
         <input id="newBrand" class="inputs cusInput modelInputs" type="text" name="brandName">
         <button id="addBrandBtn" class="smallBtnOne">Add Brand</button>
@@ -25,16 +28,21 @@
   </div>
 
   <div id="editModelDiv" class="addEditModelDiv boxTwo">
-    <h3>Edit or Remove Brand / Model</h3>
+    <h3 class="sectionTitle">Edit or Remove Brand / Model</h3>
     <div id="searchModelDiv">
       <label for="seachModel">Seach Brand/Model</label><br>
-      <input id="seachModelInput" class="inputs cusInput modelInputs" type="text" name="searchModel" placeholder="Seach Model">
+      <input id="seachModelInput" class="inputs cusInput modelInputs" type="search" name="searchModel" placeholder="Seach Model">
       <button id="seachModelBtn" class="smallBtnOne">Seach</button>
+      <button data-name="seachModelInput" class="smallBtnOne clearInputVal">Clear</button>
     </div>
     <div id="editHottubDiv">
       <label for="model">Edit</label><br>
-      <input data-brand="" data-model="" id="editInput" class="inputs cusInput modelInputs" type="text" name="editInput">
-      <button id="editHottub" class="smallBtnOne">Edit</button>
+      <input data-brand="" data-model="" id="editInput" class="inputs cusInput modelInputs" type="text" name="editInput"><br>
+      <div class="buttonsDiv">
+        <button id="editHottub" class="smallBtnOne">Submit</button>
+        <button data-name="editInput" class="smallBtnOne clearInputVal">Clear</button>
+        <button data-div="editHottubDiv" class="smallBtnOne cancelEdit">Cancel</button>
+      </div>
     </div>
     <div id="editModelInputDiv">
       <div>
@@ -48,12 +56,12 @@
       </div>
     </div>
 
-    <h3>All Brands</h3>
-    <ul id="brandUl">
+    <h3 class="sectionTitle">All Brands</h3>
+    <ul id="brandUl" class="hottubUl">
       <!-- data insert here from client js (addEditCustomer.js) -->
     </ul>
-    <h3>All Models</h3>
-    <ul id="modelsUl">
+    <h3 class="sectionTitle">All Models</h3>
+    <ul id="modelsUl" class="hottubUl">
       <!-- data insert here from client js (addEditCustomer.js) -->
     </ul>
   </div>

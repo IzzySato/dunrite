@@ -1,4 +1,5 @@
 import * as WorkHistoryUtil from './workHistoryUtil.js';
+import * as Util from './util.js';
 
 //all customers store in data
 const data = {};
@@ -37,7 +38,7 @@ const customerTemplate = ({
           <i class="fas fa-trash-alt removeCustomer customerPageIcon pointer" data-id="${_id}"></i>
           <a class="detailBtn pointer" href="customerDetail/${_id}" data-id="${_id}">Details</a>
         </div>
-        <button data-id="${_id}" data-name="${customerFirstName} ${customerLastName}" class="addHistoryBtn pointer">Add Work History</button>
+        <button data-id="${_id}" data-name="${customerFirstName} ${customerLastName}" class="addHistoryBtn pointer detailBtn">Add Work History</button>
       </div>
     </li>
   </ul>`;
@@ -65,27 +66,35 @@ const serachCustomer = (searchVal) => {
   }
 };
 
+const messageDiv = document.querySelector('#cusListMessageDiv');
+
 const processClick = (target) => {
   const {dataset: {id}} = target;
   const {dataset: {name}} = target;
-  if(target.matches('.removeCustomer')) location.href=`/customerList/data/delete/${id}`;
+  if(target.matches('.removeCustomer')) {
+      Util.confirmMessage(messageDiv);
+      const confirmedBtn = document.querySelector('.confirmedBtn');
+      confirmedBtn.addEventListener('click', () => {
+        Util.insertMessage(messageDiv, false, 'Removed the Customer');
+        const btn = document.querySelector('.btnMessage');
+        btn.addEventListener('click', () => {
+          location.href=`/customerList/data/delete/${id}`;
+        });
+      });
+    }
   if(target.matches('.editCustomer')) location.href=`/addEditCustomer/${id}`;
   if(target.matches('.addHistoryBtn')) {
-    const customerName = document.querySelector('#cusNameP');
+    const customerName = document.querySelector('#cusNameWorkDiv');
     const submitBtn = document.querySelector('#cusSubmitWork');
     submitBtn.dataset.id = id;
     submitBtn.dataset.name = name;
-    customerName.innerHTML = `Customer Name: ${name}`
+    customerName.innerHTML = `<p class="cusName">Customer Name: </p><p>${name}</P>`
     WorkHistoryUtil.openCloseWorkFormDiv();
   }
   if(target.matches('.submitNewWork')){
     const date = document.querySelector('#cusDateInput').value;
     const service = document.querySelector('#cusWorkInput').value;
     WorkHistoryUtil.addWork( id, date, service);
-  }
-  if(target.matches('.cancel')){
-    const formDiv = document.querySelector('.workForm');
-    formDiv.style.display = 'none';
   }
 };
 

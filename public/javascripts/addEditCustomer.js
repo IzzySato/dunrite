@@ -1,4 +1,5 @@
 import * as ProductUtil from './productUtil.js';
+import * as Util from './util.js';
 
 //add or edit customer
 const addEditCustomer = (
@@ -35,10 +36,16 @@ const addEditCustomer = (
       }
     })
     .then(res => res.json())
-    .then(({
-      url
-    }) => location.href = url);
+    .then(({url}) => {
+      Util.insertMessage(messageDiv(), false, 'Saved Customer');
+      const btn = document.querySelector('.btnMessage');
+      btn.addEventListener('click', () => {
+        location.href = url;
+      });
+    });
 };
+
+const messageDiv = () => document.querySelector('#messageAddEditCustomer');
 
 const processClick = (target) => {
   if (target.matches('#newCustomerButton')) {
@@ -60,20 +67,25 @@ const processClick = (target) => {
       model
     };
 
-    addEditCustomer(
-      id,
-      customerFirstName,
-      customerLastName,
-      phone,
-      email,
-      street,
-      city,
-      postcode,
-      country,
-      hottubModel,
-      comments
-    )
-    Util.successMessage('saved');
+    
+
+    if((customerLastName === null) || (customerFirstName === null) || (customerFirstName === '') || (customerLastName === '')){
+      Util.insertMessage(messageDiv(), true, 'Customer name must not be empty');
+    }else{
+      addEditCustomer(
+        id,
+        customerFirstName,
+        customerLastName,
+        phone,
+        email,
+        street,
+        city,
+        postcode,
+        country,
+        hottubModel,
+        comments
+      )
+    }
   }
 };
 

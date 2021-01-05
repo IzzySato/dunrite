@@ -1,7 +1,7 @@
 <%- include('partials/head')%>
 <%- include('partials/nav')%>
 
-<div id="successDiv">
+<div id="cusListMessageDiv" class="messageDiv">
   <!-- message will be here clicked submit -->
 </div>
 
@@ -31,15 +31,15 @@
 
   <!-- The below form disply when users clicked the Add Work History button (data insert from client side)-->
   <div id="mainAddWorkDiv" class="workForm">
-    <p id="cusNameP">
-      <!-- customerName cinsert from client side -->
-    </p>
+    <div id="cusNameWorkDiv" class="sectionTitle">
+      <!-- customerName insert from client side -->
+    </div>
     <label for="date">Date</label>
-    <input id="cusDateInput" class="inputs cusInput" type="date" name="date"><br>
+    <input id="cusDateInput" class="inputs cusInput workInput" type="date" name="date"><br>
     <label for="work">Service</label>
-    <input id="cusWorkInput" class="inputs cusInput" type="text" name="work" placeholder="e.g. Fixed pump"><br>
-    <button id="cusSubmitWork" class="submitNewWork smallBtnOne">Submit</button>
-    <button id="cusWorkCancel" class="cancel smallBtnOne">Cancel</button>
+    <input id="cusWorkInput" class="inputs cusInput workInput" type="text" name="work" placeholder="e.g. Fixed pump"><br>
+    <button id="cusSubmitWork" class="submitNewWork smallBtnOne submitBtn">Submit</button>
+    <button data-div="mainAddWorkDiv" id="cusWorkCancel" class="cancel smallBtnOne cancelEdit">Cancel</button>
   </div>
 
   <div id="dataDiv">

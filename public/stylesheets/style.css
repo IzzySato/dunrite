@@ -14,8 +14,9 @@
   --facebook-hover-color: #213257;
   --btn-color: rgb(58, 80, 114);
   --btn-hover-color: rgb(24, 33, 46);
-  --success-color: rgb(66, 165, 107);
-  --error-color: rgb(170, 19, 19);
+  --success-color: #4BB543;
+  --success-darker-color: #2a6826;
+  --error-color: #ed4337;
 }
 
 body {
@@ -37,6 +38,10 @@ ul{
 
 li{
   list-style: none;
+  margin: 0;
+}
+
+h1, h2, h3, h4, p{
   margin: 0;
 }
 
@@ -72,7 +77,12 @@ li{
 }
 
 .subTitle{
+  margin: 3% 0 2% 0;
   color: var(--font-sub-color)
+}
+
+.sectionTitle{
+  margin-bottom: 3%;
 }
 
 .pageLogo{
@@ -126,6 +136,66 @@ ul.hamburgerMenu{
   border-radius: 6px;
   margin-bottom: 25px;
   padding: 1% 2%;
+}
+
+.clearAllInput{
+  margin: 0  0 2% 0;
+}
+
+.messageDiv{
+  position: fixed;
+  top: 0;
+  left: 25%;
+  width: 50%;
+  text-align: center;
+  z-index: 1;
+}
+
+.messageText{
+  padding: 1.7%;
+  font-size: 0.9em;
+}
+
+.messageIcon{
+  font-size: 5em;
+}
+
+.message{
+  border: 1px solid black;;
+}
+
+.messageIconDiv{
+  padding: 4% 0;
+}
+
+.error{
+  background-color: var(--error-color);
+}
+
+.success{
+  background-color: var(--success-color);
+}
+
+.messageArea{
+  padding: 5% 0;
+  background-color: var(--font-main-color);
+  color: var(--font-sub-color);
+}
+
+#confirmMessageDiv{
+  background-color: var(--light-main-color);
+  color: var(--font-sub-color);
+  padding: 3% 0;
+  border: 1px solid black;
+}
+
+.submitBtn{
+  background-color: var(--success-color);
+  color: var(--font-main-color);
+}
+
+.submitBtn:hover{
+  background-color: var(--success-darker-color);;
 }
 
 /* index (login page) */
@@ -286,8 +356,7 @@ ul.hamburgerMenu{
 }
 
 .customerPageIcon:hover{
-  background-color: var(--btn-hover-color);
-  color: var(--font-main-color);
+  color: var(--darker-main-color);
 }
 
 .detailBtn{
@@ -307,19 +376,6 @@ ul.hamburgerMenu{
 .sIcons{
   display: grid;
   grid-template-columns: 30% 30% 30%;
-}
-
-.addHistoryBtn{
-  font-size: 0.7em;
-  color: var(--font-main-color);
-  background-color: var(--main-color);
-  padding: 6px;
-  margin-top: 20px;
-  border-radius: 8px;
-}
-.addHistoryBtn:hover{
-  background-color: var(--btn-hover-color);
-  color: var(--font-main-color);
 }
 
 /* addEditCustomer page */
@@ -390,10 +446,12 @@ ul.hamburgerMenu{
 
 .cusDetailData{
   color: var(--font-highlight-color);
+  margin: 2% 0;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
 #detailDiv{
+  margin-top: 3%;
   display: grid;
   grid-template-columns: 40% 60%;
 }
@@ -409,9 +467,13 @@ ul.hamburgerMenu{
 }
 
 #workDiv{
-  background-color: var(--light-main-color);
+  background-color: var(--main-color);
   padding: 3%;
   border-radius: 8px;
+}
+
+#newWorkForm{
+  background-color: var(--darker-main-color);
 }
 
 .serviceDiv{
@@ -422,17 +484,28 @@ ul.hamburgerMenu{
   margin-top: 2%;
 }
 
+#cusNameWorkDiv{
+  margin-bottom: 13%;
+}
+
 .workP{
   color: var(--font-main-color);
 }
 
 .workForm{
   display: none;
-  padding: 1%;
-  margin-top: 2%;
+  position: fixed;
+  padding: 5% 10%;
+  top: 0;
+  left: 25%;
   background-color: var(--main-color);
   color: var(--font-main-color);
   border-radius: 8px;
+}
+
+.workInput{
+  width: 100%;
+  margin: 1% 0 13% 0;
 }
 
 /* product config page */
@@ -460,6 +533,29 @@ ul.hamburgerMenu{
 
 #editHottubDiv{
   display: none;
+  position: fixed;
+  top: 0;
+  left: 30%;
+  background-color: var(--main-color);
+  border: 1px solid black;
+  padding: 1% 8%;
+  border-radius: 8px;
+}
+
+.buttonsDiv{
+  display: inline-flex;
+}
+
+.hottubUl{
+  margin-bottom: 3%;
+}
+
+#searchModelDiv{
+  margin: 3% 0;
+}
+
+#seachModelInput{
+  margin: 2% 2% 0 0;
 }
 
 @media screen and (max-width: 1350px) {
@@ -482,6 +578,28 @@ ul.hamburgerMenu{
     border-radius: 8px;
     color: var(--font-main-color);
     padding: 3% 10%;
+  }
+
+  .customerPageIcon{
+    color: var(--font-main-color);
+  }
+
+  .customerPageIcon:hover{
+    color: var(--light-main-color);
+  }
+
+  .detailBtn{
+    background-color: var(--font-main-color);
+    color: var(--darker-main-color);
+  }
+
+  .detailBtn:hover{
+    background-color: var(--light-main-color);
+    color: var(--darker-main-color);
+  }
+
+  .addHistoryBtn{
+    margin-top: 2%;
   }
 
   .cusLiSpan{
