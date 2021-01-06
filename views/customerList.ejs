@@ -12,8 +12,15 @@
     <input id="searchInput" class="inputs" type="search" name="search"
       placeholder="Search...   first name, last name, or phone number">
   </div>
-  <div id="foundCustomerDiv">
-    <!-- data will be here if found the customer -->
+  <div id="customerListFoundDiv" class="foundSection">
+    <div class="foundDiv">
+      <!-- data will be here if found the customer -->
+    </div>
+    <div class="noFoundDiv">
+      <h4>Sorry, no customer found</h4>
+    </div>
+    <!-- data-div is parent ID which will be close -->
+    <button data-div="customerListFoundDiv" class="cancelEdit btn">close</button>
   </div>
 </div>
 <h2 class="subTitle">All Customers</h2>
@@ -39,6 +46,7 @@
     <label for="work">Service</label>
     <input id="cusWorkInput" class="inputs cusInput workInput" type="text" name="work" placeholder="e.g. Fixed pump"><br>
     <button id="cusSubmitWork" class="submitNewWork smallBtnOne submitBtn">Submit</button>
+    <!-- data-div is parent ID which will be close -->
     <button data-div="mainAddWorkDiv" id="cusWorkCancel" class="cancel smallBtnOne cancelEdit">Cancel</button>
   </div>
 

@@ -1,5 +1,6 @@
 import * as WorkHistoryUtil from './workHistoryUtil.js';
 import * as Util from './util.js';
+import * as Search from './search.js';
 
 //all customers store in data
 const data = {};
@@ -49,24 +50,8 @@ const loadCustomer = () => {
   div.innerHTML = html;
 };
 
-const serachCustomer = (searchVal) => {
-  const seachValLoercase = searchVal.toLowerCase();
-  let foundCustomer = [];
-  data.customers.forEach(customer => {
-    if(customer.customerFirstName.toLowerCase() === seachValLoercase || 
-      customer.customerLastName.toLowerCase() === seachValLoercase || 
-      customer.phone === searchVal){
-        foundCustomer.push(customer);
-      }
-  });
-  if(foundCustomer !== null){
-    const foundCustomerDiv = document.querySelector('#foundCustomerDiv');
-    const html = foundCustomer.map(customer => customerTemplate(customer)).join('');
-    foundCustomerDiv.innerHTML = html;
-  }
-};
-
 const messageDiv = document.querySelector('#cusListMessageDiv');
+const input = document.querySelector('#searchInput');
 
 const processClick = (target) => {
   const {dataset: {id}} = target;
@@ -96,6 +81,10 @@ const processClick = (target) => {
     const service = document.querySelector('#cusWorkInput').value;
     WorkHistoryUtil.addWork( id, date, service);
   }
+  if(target.matches('#searchCustomerIcon')){
+    const searchVal = input.value;
+    Search.searchCustomer(data, searchVal, customerTemplate);
+  }
 };
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -103,14 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadCustomer();
 
     document.addEventListener('click', ({target}) => processClick(target));
-    const inputArea = document.querySelector('#searchInput');
 
-    inputArea.addEventListener('keyup', (event) => {
-      if(event.keyCode === 13) {
-        const searchVal = document.querySelector('#searchInput').value;
-        serachCustomer(searchVal);
-      }
-    });
-    
+    Search.keyUpSearch(input, Search.searchCustomer, data, customerTemplate);
   });
 });

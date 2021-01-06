@@ -22,38 +22,40 @@
     <section>
       <h3 id="newBrandH3" class="sectionTitle">Add a new Brand</h3>
       <label class="modelLabel hottubLabel" for="brand">Brand Name</label>
-        <input id="newBrand" class="inputs cusInput modelInputs" type="text" name="brandName">
-        <button id="addBrandBtn" class="smallBtnOne">Add Brand</button>
+      <input id="newBrand" class="inputs cusInput modelInputs" type="text" name="brandName">
+      <button id="addBrandBtn" class="smallBtnOne">Add Brand</button>
     </section>
   </div>
 
   <div id="editModelDiv" class="addEditModelDiv boxTwo">
     <h3 class="sectionTitle">Edit or Remove Brand / Model</h3>
     <div id="searchModelDiv">
-      <label for="seachModel">Seach Brand/Model</label><br>
-      <input id="seachModelInput" class="inputs cusInput modelInputs" type="search" name="searchModel" placeholder="Seach Model">
-      <button id="seachModelBtn" class="smallBtnOne">Seach</button>
+      <label for="seachModel">Seach Models</label><br>
+      <i id="searchModelIcon" class="fas fa-search pointer"></i>
+      <input id="seachModelInput" class="inputs cusInput modelInputs" type="search" name="searchModel"
+        placeholder="Seach Model">
       <button data-name="seachModelInput" class="smallBtnOne clearInputVal">Clear</button>
     </div>
     <div id="editHottubDiv">
       <label for="model">Edit</label><br>
-      <input data-brand="" data-model="" id="editInput" class="inputs cusInput modelInputs" type="text" name="editInput"><br>
+      <input data-brand="" data-model="" id="editInput" class="inputs cusInput modelInputs" type="text"
+        name="editInput"><br>
       <div class="buttonsDiv">
-        <button id="editHottub" class="smallBtnOne">Submit</button>
+        <button id="editHottub" class="smallBtnOne submitBtn">Submit</button>
         <button data-name="editInput" class="smallBtnOne clearInputVal">Clear</button>
+        <!-- data-div is parent ID which will be close -->
         <button data-div="editHottubDiv" class="smallBtnOne cancelEdit">Cancel</button>
       </div>
     </div>
-    <div id="editModelInputDiv">
-      <div>
-        <ul id="foundModels">
-          <!-- found models here -->
-        </ul>
+    <div id="editModelInputDiv" class="foundSection">
+      <ul class="foundDiv">
+        <!-- found models here -->
+      </ul>
+      <div class="noFoundDiv">
+        <h4>Sorry, no models found</h4>
       </div>
-
-      <div id="noFoundModel">
-        <h4>Sorry, no models found.</h4>
-      </div>
+      <!-- data-div is parent ID which will be close -->
+      <button data-div="editModelInputDiv" class="cancelEdit smallBtnOne">close</button>
     </div>
 
     <h3 class="sectionTitle">All Brands</h3>

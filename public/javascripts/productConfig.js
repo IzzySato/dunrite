@@ -1,5 +1,6 @@
 import * as ProductUtil from './productUtil.js';
 import * as Util from './util.js';
+import * as Search from './search.js';
 
 const data = {};
 
@@ -40,9 +41,8 @@ const addModelHTML = (data) => {
   const modelUl = document.querySelector('#modelsUl');
   let modelHTML = '';
   data.forEach((product) => {
-    product.hottub.model.forEach((mo) => {
-      modelHTML += brandModelTemplate(product._id, product.hottub.brandName, mo);
-    });
+    modelHTML += product.hottub.model.map( m => 
+       brandModelTemplate(product._id, product.hottub.brandName, m)).join('');
   });
   modelUl.innerHTML = modelHTML;
 };
@@ -113,28 +113,6 @@ const removeModel = (brandName, model) => {
     });
 };
 
-//Search brand or model function
-const searchHottub = (searchVal) => {
-  let hottubLi = '';
-  data.products.forEach(product => {
-    product.hottub.model.forEach(m =>{
-      if(product.hottub.brandName.toLowerCase() === searchVal.toLowerCase())
-        hottubLi += brandModelTemplate(product._id, product.hottub.brandName, m);
-      if(m.toLowerCase() === searchVal.toLowerCase())
-        hottubLi += brandModelTemplate(product._id, product.hottub.brandName, m);
-    });
-
-    if(hottubLi === ''){
-      const noFoundModelDiv = document.querySelector('#noFoundModel');
-      noFoundModelDiv.style.display='block';
-    }else{
-      const foundModelUl = document.querySelector('#foundModels');
-      foundModelUl.style.display='block';
-      foundModelUl.innerHTML=hottubLi;
-    }
-  });
-};
-
 const openEditForm = (target, openDiv, input) => {
   const {dataset: {name}} = target;
   openDiv.style.display='block';
@@ -142,6 +120,7 @@ const openEditForm = (target, openDiv, input) => {
 };
 
 const messageDiv = () => document.querySelector('#productConfigMessageDiv');
+const input = document.querySelector('#seachModelInput');
 
 const processClick = (target) => {
   if(target.matches('.removeBrandIcon')) {
@@ -218,12 +197,11 @@ const processClick = (target) => {
           addEditModel(status, brand, model, newVal);
         }
       }
-
     }
 
-  if(target.matches('#seachModelBtn')){
-    const searchVal = document.querySelector('#seachModelInput').value;
-    searchHottub(searchVal);
+  if(target.matches('#searchModelIcon')){
+    const inputVal = input.value;
+    Search.searchHottub(inputVal, data, brandModelTemplate);
   }
 };
 
@@ -234,8 +212,15 @@ document.addEventListener('DOMContentLoaded', function () {
     addModelHTML(data.products);
     const id = 'new';
     ProductUtil.insertBrandOptionsHTML(id, brandSelect);
+
     document.addEventListener('click', ({
       target
     }) => processClick(target));
+    
+    document.addEventListener('touch', ({
+      target
+    }) => processClick(target));
+
+    Search.keyUpSearch(input, Search.searchHottub, data, brandModelTemplate);
   });
 });

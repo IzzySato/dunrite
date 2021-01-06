@@ -198,6 +198,20 @@ ul.hamburgerMenu{
   background-color: var(--success-darker-color);;
 }
 
+.foundSection{
+  display: none;
+}
+
+.noFoundDiv{
+  display: none;
+}
+
+.foundDiv{
+  display: none;
+  padding: 1%;
+  border-radius: 8px;
+}
+
 /* index (login page) */
 
 .logo{
@@ -303,10 +317,6 @@ ul.hamburgerMenu{
   top: 20%;
   left: 1%;
   color: var(--main-color);
-}
-
-#foundCustomerDiv{
-  margin-top: 3%;
 }
 
 #tableHeader{
@@ -520,15 +530,9 @@ ul.hamburgerMenu{
   padding-top: 2%;
 }
 
-#foundModels{
+#editModelInputDiv{
   display: none;
-  background-color: var(--main-color);
-  padding: 1%;
-  border-radius: 8px;
-}
-
-#noFoundModel{
-  display: none;
+  margin-bottom: 5%;
 }
 
 #editHottubDiv{
@@ -551,11 +555,23 @@ ul.hamburgerMenu{
 }
 
 #searchModelDiv{
+  position: relative;
   margin: 3% 0;
+}
+
+#searchModelIcon{
+  color: var(--font-sub-color);
+  position: absolute;
+  top: 65%;
+  right: 37%;
 }
 
 #seachModelInput{
   margin: 2% 2% 0 0;
+}
+
+#editInput{
+  margin-left: 0;
 }
 
 @media screen and (max-width: 1350px) {
@@ -744,8 +760,9 @@ ul.hamburgerMenu{
     margin-bottom: 5%;
   }
 
-  /* product config page */
-  #editHottubDiv{
-    margin-top: 10%;
+  /* productConfig page */
+  #searchModelIcon{
+    top: 46%;
+    right: 7%;
   }
 }
