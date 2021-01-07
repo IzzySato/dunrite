@@ -1,5 +1,4 @@
 import * as WorkHistoryUtil from './workHistoryUtil.js';
-import * as Util from './util.js';
 import * as Search from './search.js';
 
 //all customers store in data
@@ -50,23 +49,12 @@ const loadCustomer = () => {
   div.innerHTML = html;
 };
 
-const messageDiv = document.querySelector('#cusListMessageDiv');
 const input = document.querySelector('#searchInput');
 
 const processClick = (target) => {
   const {dataset: {id}} = target;
   const {dataset: {name}} = target;
-  if(target.matches('.removeCustomer')) {
-      Util.confirmMessage(messageDiv);
-      const confirmedBtn = document.querySelector('.confirmedBtn');
-      confirmedBtn.addEventListener('click', () => {
-        Util.insertMessage(messageDiv, false, 'Removed the Customer');
-        const btn = document.querySelector('.btnMessage');
-        btn.addEventListener('click', () => {
-          location.href=`/customerList/data/delete/${id}`;
-        });
-      });
-    }
+
   if(target.matches('.editCustomer')) location.href=`/addEditCustomer/${id}`;
   if(target.matches('.addHistoryBtn')) {
     const customerName = document.querySelector('#cusNameWorkDiv');
@@ -83,7 +71,7 @@ const processClick = (target) => {
   }
   if(target.matches('#searchCustomerIcon')){
     const searchVal = input.value;
-    Search.searchCustomer(data, searchVal, customerTemplate);
+    Search.searchCustomer( searchVal, data, customerTemplate);
   }
 };
 

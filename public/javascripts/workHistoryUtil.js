@@ -1,6 +1,6 @@
 import * as Util from './util.js';
 
-const messageDiv = () => document.querySelector('#cusListMessageDiv');
+const messageDiv = () => document.querySelector('.messageDiv');
 
 const openCloseWorkFormDiv = () => {
   const formDiv = document.querySelector('.workForm');

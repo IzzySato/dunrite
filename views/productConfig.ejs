@@ -10,19 +10,19 @@
     <section>
       <div id="addModelDiv">
         <h3 class="sectionTitle">Add a new Model</h3>
-        <label class="hottubLabel" for="brand">Brand Name</label>
+        <label id="prodBrandLabel" for="brand">Brand Name</label>
         <select id="brandNameSelect" name="brandName" class="brandSelect">
           <!-- get data from client js -->
         </select><br>
-        <label class="modelLabel hottubLabel" for="model">Model Name</label>
-        <input id="newModel" class="inputs cusInput modelInputs" type="text" name="model">
+        <label id="prodModelLabel" class="modelLabel" for="model">Model Name</label>
+        <input id="newModel" class="inputs modelInputs" type="text" name="model">
         <button id="addModelBtn" class="smallBtnOne">Add Model</button>
       </div>
     </section>
     <section>
       <h3 id="newBrandH3" class="sectionTitle">Add a new Brand</h3>
-      <label class="modelLabel hottubLabel" for="brand">Brand Name</label>
-      <input id="newBrand" class="inputs cusInput modelInputs" type="text" name="brandName">
+      <label class="modelLabel" for="brand">Brand Name</label>
+      <input id="newBrand" class="inputs modelInputs" type="text" name="brandName">
       <button id="addBrandBtn" class="smallBtnOne">Add Brand</button>
     </section>
   </div>
@@ -32,13 +32,12 @@
     <div id="searchModelDiv">
       <label for="seachModel">Seach Models</label><br>
       <i id="searchModelIcon" class="fas fa-search pointer"></i>
-      <input id="seachModelInput" class="inputs cusInput modelInputs" type="search" name="searchModel"
+      <input id="seachModelInput" class="inputs modelInputs" type="text" name="searchModel"
         placeholder="Seach Model">
-      <button data-name="seachModelInput" class="smallBtnOne clearInputVal">Clear</button>
     </div>
     <div id="editHottubDiv">
       <label for="model">Edit</label><br>
-      <input data-brand="" data-model="" id="editInput" class="inputs cusInput modelInputs" type="text"
+      <input data-brand="" data-model="" id="editInput" class="inputs modelInputs" type="text"
         name="editInput"><br>
       <div class="buttonsDiv">
         <button id="editHottub" class="smallBtnOne submitBtn">Submit</button>
@@ -47,15 +46,16 @@
         <button data-div="editHottubDiv" class="smallBtnOne cancelEdit">Cancel</button>
       </div>
     </div>
+
     <div id="editModelInputDiv" class="foundSection">
       <ul class="foundDiv">
         <!-- found models here -->
       </ul>
       <div class="noFoundDiv">
-        <h4>Sorry, no models found</h4>
+        <h4 id="prodNoFoundH4">Sorry, no models found</h4>
       </div>
       <!-- data-div is parent ID which will be close -->
-      <button data-div="editModelInputDiv" class="cancelEdit smallBtnOne">close</button>
+      <button data-div="editModelInputDiv" id="prodFoundCancelBtn" class="cancelEdit smallBtnOne">close</button>
     </div>
 
     <h3 class="sectionTitle">All Brands</h3>

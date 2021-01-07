@@ -6,12 +6,11 @@
       <li class="hamburgerMenu"></li>
       <li class="hamburgerMenu"></li>
     </ul>
-
     <ul class="nav">
       <% navLinks.forEach(nav => {%>
-        <a class="navLink" href="<%- nav.link %>">
-          <li class="navLi logout"><%- nav.name %></li>
-        </a>
+        <li class="navLi logout">
+          <a class="navLink" href="<%- nav.link %>"><%- nav.name %></a>
+        </li>
       <%})%>
     </ul>
   </div>

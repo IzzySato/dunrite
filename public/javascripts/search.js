@@ -11,7 +11,7 @@ const getFoundSection = () => {
 }
 
 const openSuccessOrErrorDiv = (found, html, foundSection = '', successDiv = '', errorDiv = '') => {
-  if(foundSection === '') foundSection = getFoundSection();
+  if( foundSection === '') foundSection = getFoundSection();
   if( successDiv === '') successDiv = getSuccessDiv();
   if( errorDiv === '') errorDiv = getErrorDiv();
 
@@ -40,10 +40,10 @@ const searchHottub = (searchVal, data, template, foundSection, successDiv, error
       }
     });
   });
-  openSuccessOrErrorDiv(found, html, foundSection, foundSection, successDiv, errorDiv);
+  openSuccessOrErrorDiv(found, html, foundSection, successDiv, errorDiv);
 };
 
-const searchCustomer = (searchVal, data, template , foundSection, successDiv, errorDiv) => {
+const searchCustomer = ( searchVal, data, template , foundSection, successDiv, errorDiv) => {
   const seachValLoercase = searchVal.toLowerCase();
   let html = '';
   let found = false;

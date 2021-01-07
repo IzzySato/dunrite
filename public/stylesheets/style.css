@@ -1,15 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Source+Sans+Pro:wght@200&display=swap');
-:root{
+
+:root {
   --main-color: rgb(78, 110, 214);
-  --sub-color:rgb(64, 90, 175);
+  --sub-color: rgb(64, 90, 175);
   --light-main-color: rgb(175, 192, 250);
   --darker-main-color: rgb(37, 54, 107);
   --font-main-color: rgb(255, 255, 255);
   --font-sub-color: rgb(22, 22, 22);
   --font-highlight-color: rgb(6, 56, 114);
   --google-color: #DB4437;
-  --google-hover-color:  #852820;
+  --google-hover-color: #852820;
   --facebook-color: #3b5998;
   --facebook-hover-color: #213257;
   --btn-color: rgb(58, 80, 114);
@@ -17,6 +18,8 @@
   --success-color: #4BB543;
   --success-darker-color: #2a6826;
   --error-color: #ed4337;
+  --warning-color: #ffcc00;
+  --warning-darker-color: #dbb001;
 }
 
 body {
@@ -27,26 +30,30 @@ body {
   color: var(--font-main-color);
 }
 
-i{
+i {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-ul{
+ul {
   margin: 0;
   padding: 0;
 }
 
-li{
+li {
   list-style: none;
   margin: 0;
 }
 
-h1, h2, h3, h4, p{
+h1,
+h2,
+h3,
+h4,
+p {
   margin: 0;
 }
 
 /* common style */
-.btn{
+.btn {
   background-color: var(--btn-color);
   padding: 1.6% 5%;
   font-size: 0.8em;
@@ -56,93 +63,106 @@ h1, h2, h3, h4, p{
   text-transform: uppercase;
 }
 
-.btn:hover{
+.btn:hover {
   cursor: pointer;
   background-color: var(--btn-hover-color);
 }
 
-.pointer:hover{
+.pointer:hover {
   cursor: pointer;
 }
 
-.smallBtnOne{
+.smallBtnOne {
   margin: 0 2% 0 1%;
   border-radius: 8px;
   padding: 3px 8px;
   border: none;
 }
 
-.smallBtnOne:hover{
+.smallBtnOne:hover {
   background-color: var(--light-main-color);
 }
 
-.subTitle{
+.subTitle {
   margin: 3% 0 2% 0;
   color: var(--font-sub-color)
 }
 
-.sectionTitle{
+.sectionTitle {
   margin-bottom: 3%;
 }
 
-.pageLogo{
-  position: absolute;
-  top: 9%;
-  left: 8%;
+.topNav {
+  display: grid;
+  grid-template-areas:
+    "logo nav";
 }
 
-.topNav{
-  padding: 2% 0 2% 15%;
+.pageLogo {
+  grid-area: logo;
+  padding: 2%;
 }
 
-.navLi{
-  display: inline;
-  padding-right: 3%;
+.nav {
+  grid-area: nav;
+  text-align: right;
+
 }
 
-.navLink{
-  color: var(--font-main-color);
+.navLi {
+  display: inline-block;
+  padding: 4.8% 4%;
+}
+
+.navLi:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.navLi:hover {
+  background-color: var(--darker-main-color);
+}
+
+.navLink {
   text-decoration: none;
-  padding: 1.3%;
+  color: var(--font-main-color);
 }
 
-.navLink:hover{
-  color: var(--btn-hover-color);
-}
-
-ul.hamburgerMenu{
+ul.hamburgerMenu {
   display: none;
+  grid-area: phoneMenu;
 }
 
-.boxOne{
+.boxOne {
   background-color: var(--main-color);
   border-radius: 8px;
 }
 
-.boxTwo{
+.boxTwo {
   background-color: var(--darker-main-color);
   border-radius: 8px;
 }
 
-#successSection{
+#successSection {
   background-color: var(--success-color);
   padding: 2%;
   text-align: center;
 }
 
-.inputs{
-  width: 65%;
+.inputs {
   border: none;
   border-radius: 6px;
   margin-bottom: 25px;
   padding: 1% 2%;
 }
 
-.clearAllInput{
-  margin: 0  0 2% 0;
+.clearAllInput {
+  background-color: var(--error-color);
+  color: var(--font-main-color);
+  margin: 0 0 2% 0;
 }
 
-.messageDiv{
+.messageDiv {
   position: fixed;
   top: 0;
   left: 25%;
@@ -151,62 +171,86 @@ ul.hamburgerMenu{
   z-index: 1;
 }
 
-.messageText{
+.messageText {
   padding: 1.7%;
   font-size: 0.9em;
 }
 
-.messageIcon{
+.messageIcon {
   font-size: 5em;
 }
 
-.message{
-  border: 1px solid black;;
+.message {
+  border: 1px solid black;
 }
 
-.messageIconDiv{
+.messageIconDiv {
   padding: 4% 0;
 }
 
-.error{
+.error {
   background-color: var(--error-color);
 }
 
-.success{
+.success {
   background-color: var(--success-color);
 }
 
-.messageArea{
+.success:hover {
+  color: var(--font-main-color);
+  background-color: var(--success-darker-color);
+}
+
+.messageArea {
   padding: 5% 0;
   background-color: var(--font-main-color);
   color: var(--font-sub-color);
 }
 
-#confirmMessageDiv{
-  background-color: var(--light-main-color);
-  color: var(--font-sub-color);
-  padding: 3% 0;
-  border: 1px solid black;
+.confirmMessageDiv {
+  border: 2px solid black;
 }
 
-.submitBtn{
+.confirmTextSection{
+  background-color: var(--warning-color);
+  padding: 3% 0;
+}
+
+.confirmBtnSection{
+  background-color: var(--font-main-color);
+  padding: 4% 0;
+}
+
+.confirmH2{
+  color: var(--font-sub-color);
+}
+
+.confirmedBtn{
+  background-color: var(--warning-color);
+}
+.confirmedBtn:hover{
+  background-color: var(--warning-darker-color);
+  color: var(--font-main-color);
+}
+
+.submitBtn {
   background-color: var(--success-color);
   color: var(--font-main-color);
 }
 
-.submitBtn:hover{
-  background-color: var(--success-darker-color);;
+.submitBtn:hover {
+  background-color: var(--success-darker-color);
 }
 
-.foundSection{
+.foundSection {
   display: none;
 }
 
-.noFoundDiv{
+.noFoundDiv {
   display: none;
 }
 
-.foundDiv{
+.foundDiv {
   display: none;
   padding: 1%;
   border-radius: 8px;
@@ -214,12 +258,13 @@ ul.hamburgerMenu{
 
 /* index (login page) */
 
-.logo{
+.logo {
   position: absolute;
   left: 5%;
   top: 8%;
 }
-.form{
+
+.form {
   text-align: center;
   background-color: var(--main-color);
   padding: 2% 0 5% 0;
@@ -227,99 +272,104 @@ ul.hamburgerMenu{
   border-radius: 8px;
 }
 
-#sectionTitle{
+#sectionTitle {
   font-size: 1.8em;
   margin-bottom: 4%;
 }
 
-.lablels{
+.lablels {
   margin-bottom: 25px;
 }
 
-#newUserButton{
+#newUserButton {
   margin-top: 15px;
   display: block;
   color: var(--font-main-color);
 }
 
-#signinWithSocial{
+#signinWithSocial {
   margin-top: 10%;
 }
 
-.socialBtn{
+.socialBtn {
   margin: 4% 30%;
   padding: 1% 4%;
   border-radius: 6px;
   position: relative;
 }
 
-#google{
+#google {
   background-color: var(--google-color);
 }
 
-#google:hover{
+#google:hover {
   background-color: var(--google-hover-color);
 }
 
-#facebook{
+#facebook {
   background-color: var(--facebook-color);
 }
 
-#facebook:hover{
+#facebook:hover {
   background-color: var(--facebook-hover-color);
 }
 
-.loginInput{
+.loginInput {
   width: 50%;
 }
 
-.buttonTitle{
+.buttonTitle {
   display: inline;
   padding-left: 15px;
   text-decoration: none;
   color: var(--font-main-color);
 }
 
-.icon{
+.icon {
   font-size: 1.3em;
   position: absolute;
   left: 3%;
 }
 
-.fa-facebook-square{
+.fa-facebook-square {
   font-size: 1.5em;
 }
 
 /* register page */
 
-#registerForm{
+#registerForm {
   background-color: var(--sub-color);
+}
+
+.regiInput{
+  width: 60%;
 }
 
 /* customerList page */
 
-#searchDiv{
+#searchDiv {
   border-radius: 8px;
   margin-top: 2%;
 }
 
-#searchInput{
+#searchInput {
   border: 1px solid black;
+  width: 100%;
   padding-left: 4%;
 }
 
-#searchInputArea{
+#searchInputArea {
   position: relative;
 }
 
-#searchCustomerIcon{
+#searchCustomerIcon {
   position: absolute;
   top: 20%;
   left: 1%;
   color: var(--main-color);
 }
 
-#tableHeader{
+#tableHeader {
   background-color: var(--sub-color);
   color: var(--font-main-color);
   padding: 1% 0;
@@ -327,37 +377,39 @@ ul.hamburgerMenu{
   border-radius: 8px;
 }
 
-.col{
+.col {
   border-right: 1px solid white;
 }
 
-#dataDiv{
+#dataDiv {
   margin-top: 5%;
 }
 
-.cusLiSpan{
+.cusLiSpan {
   display: none;
 }
 
-.custmerData{
+.custmerData {
   color: var(--font-sub-color);
   margin-bottom: 2%;
 }
 
-#tableHeader, .custmerData{
+#tableHeader,
+.custmerData {
   display: grid;
-  grid-template-columns: 17% 17% 18% 13% 25% 10% ;
+  grid-template-columns: 17% 17% 18% 13% 25% 10%;
 }
 
-.cusID, .cusAddress{
+.cusID,
+.cusAddress {
   font-size: 0.8em;
 }
 
-#searchInput{
+#searchInput {
   margin-bottom: 0;
 }
 
-.customerPageIcon{
+.customerPageIcon {
   font-size: 0.9em;
   margin: 0 5px;
   color: var(--main-color);
@@ -365,11 +417,11 @@ ul.hamburgerMenu{
   border-radius: 4px;
 }
 
-.customerPageIcon:hover{
+.customerPageIcon:hover {
   color: var(--darker-main-color);
 }
 
-.detailBtn{
+.detailBtn {
   font-size: 0.7em;
   text-decoration: none;
   color: var(--font-main-color);
@@ -378,115 +430,118 @@ ul.hamburgerMenu{
   border-radius: 8px;
 }
 
-.detailBtn:hover{
+.detailBtn:hover {
   background-color: var(--btn-hover-color);
   color: var(--font-main-color);
 }
 
-.sIcons{
+.detailIcon {
+  margin-right: 2%;
+}
+
+.detailIcon:hover {
+  color: var(--main-color);
+}
+
+.sIcons {
   display: grid;
   grid-template-columns: 30% 30% 30%;
+  margin-bottom: 10%;
+}
+
+#cusNoFoundH4 {
+  color: var(--font-sub-color);
+  margin: 2% 0;
 }
 
 /* addEditCustomer page */
 
-#addCustomerForm{
+#addCustomerForm {
   padding: 5%;
 }
 
-.cusInput{
+.cusInput {
   margin-left: 20px;
+  width: 60%;
 }
 
-#comments{
+#comments {
   width: 100%;
   margin-top: 20px;
   border-radius: 8px;
 }
 
-.inoutSectionTitle{
-  border-bottom-style: solid; 
+.inoutSectionTitle {
+  border-bottom-style: solid;
 }
 
-#newCustomerButton{
+#newCustomerButton {
   margin-top: 5%;
 }
 
-#modelBtnDiv{
+#modelBtnDiv {
   margin: 2% 0;
 }
 
-.modelText{
+.modelText {
   font-size: 0.8em;
   text-decoration: underline;
   margin-right: 1%;
 }
 
-#addModelDivOpenBtn{
+#addModelDivOpenBtn {
   background-color: var(--btn-color);
   color: var(--font-main-color);
   text-decoration: none;
 }
 
-#addModelDivOpenBtn:hover{
+#addModelDivOpenBtn:hover {
   background-color: var(--btn-hover-color);
-}
-
-.modelInputs{
-  margin: 10px 15px;
-}
-
-.modelIcon{
-  margin-left: 1%;
-}
-
-.modelLabel{
-  font-size: 0.8em;
 }
 
 /* customerDetail */
 
-#customerDetailDiv{
+#customerDetailDiv {
   color: var(--font-sub-color);
 }
 
-.cusDetailHeader{
+.cusDetailHeader {
   font-size: 0.8em;
 }
 
-.cusDetailData{
+.cusDetailData {
   color: var(--font-highlight-color);
   margin: 2% 0;
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-#detailDiv{
+#detailDiv {
   margin-top: 3%;
   display: grid;
   grid-template-columns: 40% 60%;
 }
 
-#nameGrid{
+#nameGrid {
   display: grid;
   grid-template-columns: 50% 50%;
 }
 
-#hottubBrandModel{
+#hottubBrandModel {
   font-size: 2em;
   margin: 15px 0 15px 0;
 }
 
-#workDiv{
+#workDiv {
   background-color: var(--main-color);
   padding: 3%;
   border-radius: 8px;
 }
 
-#newWorkForm{
+#newWorkForm {
   background-color: var(--darker-main-color);
 }
 
-.serviceDiv{
+.serviceDiv {
   background-color: var(--darker-main-color);
   color: var(--font-main-color);
   padding: 1.5%;
@@ -494,15 +549,15 @@ ul.hamburgerMenu{
   margin-top: 2%;
 }
 
-#cusNameWorkDiv{
+#cusNameWorkDiv {
   margin-bottom: 13%;
 }
 
-.workP{
+.workP {
   color: var(--font-main-color);
 }
 
-.workForm{
+.workForm {
   display: none;
   position: fixed;
   padding: 5% 10%;
@@ -513,29 +568,46 @@ ul.hamburgerMenu{
   border-radius: 8px;
 }
 
-.workInput{
+.workInput {
   width: 100%;
   margin: 1% 0 13% 0;
 }
 
 /* product config page */
-.addEditModelDiv{
+#prodBrandLabel{
+  margin-right: 2%;
+}
+
+.modelInputs {
+  margin: 10px 15px;
+  width: 70%;
+}
+
+.modelIcon {
+  margin-left: 1%;
+}
+
+.modelLabel {
+  font-size: 0.8em;
+}
+
+.addEditModelDiv {
   margin-bottom: 2%;
   padding: 2%;
 }
 
-#newBrandH3{
+#newBrandH3 {
   border-top: 1px solid white;
   margin-top: 2%;
   padding-top: 2%;
 }
 
-#editModelInputDiv{
+#editModelInputDiv {
   display: none;
   margin-bottom: 5%;
 }
 
-#editHottubDiv{
+#editHottubDiv {
   display: none;
   position: fixed;
   top: 0;
@@ -546,44 +618,46 @@ ul.hamburgerMenu{
   border-radius: 8px;
 }
 
-.buttonsDiv{
+.buttonsDiv {
   display: inline-flex;
 }
 
-.hottubUl{
+.hottubUl {
   margin-bottom: 3%;
 }
 
-#searchModelDiv{
+#searchModelDiv {
   position: relative;
   margin: 3% 0;
 }
 
-#searchModelIcon{
+#searchModelIcon {
   color: var(--font-sub-color);
   position: absolute;
   top: 65%;
-  right: 37%;
+  right: 27%;
 }
 
-#seachModelInput{
+#seachModelInput {
   margin: 2% 2% 0 0;
 }
 
-#editInput{
+#editInput {
   margin-left: 0;
+}
+
+#prodNoFoundH4{
+  margin: 2% 0;
+}
+
+#prodFoundCancelBtn{
+  margin: 0;
 }
 
 @media screen and (max-width: 1350px) {
 
-  /* navigation area */
-  .pageLogo{
-    top: 7%;
-  }
-
   /* customerList page */
-
-  #tableHeader{
+  #tableHeader {
     display: none;
   }
 
@@ -596,29 +670,32 @@ ul.hamburgerMenu{
     padding: 3% 10%;
   }
 
-  .customerPageIcon{
-    color: var(--font-main-color);
+  .sIcons {
+    margin-top: 3%;
+    margin-bottom: 3%;
   }
 
-  .customerPageIcon:hover{
+  .customerPageIcon {
+    color: var(--font-main-color);
+    font-size: 1.2em;
+  }
+
+  .customerPageIcon:hover {
     color: var(--light-main-color);
   }
 
-  .detailBtn{
+  .detailBtn {
     background-color: var(--font-main-color);
     color: var(--darker-main-color);
+    font-size: 1.2em;
   }
 
-  .detailBtn:hover{
+  .detailBtn:hover {
     background-color: var(--light-main-color);
     color: var(--darker-main-color);
   }
 
-  .addHistoryBtn{
-    margin-top: 2%;
-  }
-
-  .cusLiSpan{
+  .cusLiSpan {
     display: inline-block;
     padding-right: 20px;
   }
@@ -627,7 +704,7 @@ ul.hamburgerMenu{
     display: block;
   }
 
-  .data{
+  .data {
     margin-bottom: 1%;
   }
 }
@@ -636,133 +713,118 @@ ul.hamburgerMenu{
 @media screen and (max-width: 1030px) {
 
   /* navigation area */
-  .nav{
+  .nav {
     display: none;
   }
 
-  .nav.show{
+  .topNav {
+    grid-template-areas:
+      "logo phoneMenu"
+      "nav nav";
+  }
+
+  .nav.show {
     display: block;
   }
 
-  .pageLogo{
-    top: 6%;
-  }
-
-  .topNav{
-    padding: 5% 0 5% 15%;
-  }
-
-  ul.hamburgerMenu{
+  ul.hamburgerMenu {
     display: block;
-    position: absolute;
-    top: 6%;
-    right: 8%;
+    justify-self: right;
+    margin: 5% 3% 0 0;
   }
 
-  li.hamburgerMenu{
+  li.hamburgerMenu {
     width: 45px;
     height: 6px;
-    margin-bottom: 25%;
+    margin-bottom: 27%;
     background-color: var(--font-main-color);
   }
 
-  .nav{
-    padding-top: 5%;
-  }
-
-  .navLi{
+  .navLi {
     display: block;
-    text-align: right;
+    padding: 3% 2% 3% 0;
+    margin-right: 0;
+    margin-bottom: 1%;
   }
 
   /* login page */
-  .socialBtn{
+  .socialBtn {
     margin: 5% 20%;
   }
 
   /* customer detail page */
-  #detailDiv{
+  #detailDiv {
     display: block;
   }
-}
 
-@media screen and (max-width: 850px) {
-    /* navigation area */
-    .pageLogo{
-      top: 5%;
-    }
-  
-    ul.hamburgerMenu{
-      top: 6%;
-    }
-
-    .topNav{
-      padding: 10% 0 5% 12%;
-    }
-}
-
-@media screen and (max-width: 680px) {
-    /* navigation area */
-    .pageLogo{
-      top: 4%;
-    }
-  
-    ul.hamburgerMenu{
-      top: 5%;
-    }
-}
-
-  /* iPhone X size */
-@media screen and (max-width: 500px) {
-  body{
-    padding: 2%;
+  /* customer List page */
+  #searchInput {
+    padding-left: 9%;
   }
 
-  /* navigation area */
-  .topNav{
-    padding: 18% 0 5% 12%;
-  }
-
-  .pageLogo{
-    top: 3%;
-  }
-
-  ul.hamburgerMenu{
-    top: 4%;
-  }
-
-  .inputs{
-    width: 100%;
-  }
-
-  /* login page */
-  .loginInput{
+  /* addCutomer page */
+  .cusInput{
+    margin-left: 0;
     width: 80%;
   }
 
-  .socialBtn{
+  .cusLabel {
+    display: block;
+    margin-bottom: 2%;
+  }
+
+  /* product config page */
+  #prodModelLabel{
+    margin-top: 2%;
+  }
+
+  .modelLabel{
+    display: block;
+  }
+
+  .modelInputs{
+    margin-left: 0;
+  }
+}
+
+/* iPhone X size */
+@media screen and (max-width: 510px) {
+  body {
+    padding: 2%;
+  }
+
+  /* login page */
+  .loginInput {
+    width: 80%;
+  }
+
+  .socialBtn {
     margin: 8% 4%;
     padding: 3% 13%;
   }
 
-  /* customer List page */
-  #searchInput{
-    padding-left: 9%;
+  /* customerList page */
+  .sIcons {
+    margin-top: 12%;
+  }
+
+  .customerPageIcon {
+    margin-bottom: 7%;
   }
 
   /* addEditCustomer page */
-  .cusInput{
-    margin-left: 0;
-    width: 95%;
+  .cusInput {
+    width: 70%;
   }
-  .hottubLabel{
+
+  .hottubLabel {
     display: block;
     margin-bottom: 5%;
   }
 
   /* productConfig page */
-  #searchModelIcon{
-    top: 46%;
-    right: 7%;
+  #prodBrandLabel{
+    display: inline;
   }
+
 }

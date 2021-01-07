@@ -34,7 +34,6 @@ const workDataToHTML = (insertDiv) => {
 
 const processClick = (target) => {
   const {dataset: {id}} = target;
-  if(target.matches('.removeCustomer')) location.href=`/customerList/data/delete/${id}`;
   if(target.matches('.editCustomer')) location.href=`/addEditCustomer/${id}`;
   if(target.matches('.addHistoryBtn')) WorkHistoryUtil.openCloseWorkFormDiv();
   if(target.matches('.submitNewWork')){

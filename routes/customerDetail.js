@@ -14,10 +14,6 @@ router.get('/:id', async (req, res) => {
         link: '/customerList'
       },
       {
-        name: 'Add New Customer',
-        link: '/addEditCustomer'
-      },
-      {
         name: 'Product Configuration',
         link: '/productConfig'
       },

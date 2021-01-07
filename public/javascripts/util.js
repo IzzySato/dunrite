@@ -5,9 +5,13 @@ const toggleOpenClose = (openCloseSection) => {
 const confirmMessage = (insertDiv) => {
   const html = `
   <div id="confirmMessageDiv" class="confirmMessageDiv messageDiv">
-    <h2 class="sectionTitle">Are you sure?</h2>
-    <button class="confirmedBtn smallBtnOne">YES</button>
-    <button data-div="confirmMessageDiv" class="cancelEdit smallBtnOne">Cancel</button>
+    <div class="confirmTextSection">
+      <h2 class="sectionTitle confirmH2">Are you sure?</h2>
+    </div>
+    <div class="confirmBtnSection">
+      <button class="confirmedBtn smallBtnOne">YES</button>
+      <button data-div="confirmMessageDiv" class="cancelEdit smallBtnOne confirmedBtn">CANCEL</button>
+    </div>
   </div>
   `
   insertDiv.innerHTML = html;
@@ -57,10 +61,6 @@ const clearAllInput = (inputClasses) => {
   });
 }
 
-const disableDiv = (div) => {
-  div.style.display='none';
-}
-
 const processClick = (target) => {
   if(target.matches('.hamburgerMenu')){
     const nav = document.querySelectorAll('.nav');
@@ -77,11 +77,26 @@ const processClick = (target) => {
     clearAllInput(inputClasses);
   }
 
+  if(target.matches('.removeCustomer')) {
+    const {dataset:{id}} = target;
+    const messageDiv = document.querySelector('.messageDiv');
+    confirmMessage(messageDiv);
+    const confirmedBtn = document.querySelector('.confirmedBtn');
+    confirmedBtn.addEventListener('click', () => {
+      insertMessage(messageDiv, false, 'Removed the Customer');
+      const btn = document.querySelector('.btnMessage');
+      btn.addEventListener('click', () => {
+        location.href=`/customerList/data/delete/${id}`;
+      });
+    });
+  }
+
+  //close the parent div once clicked cancel
   const {dataset: {div}} = target;
   const closeDiv = document.querySelector(`#${div}`);
 
   if(target.matches('.errorBtn') || target.matches('.cancelEdit')){
-    disableDiv(closeDiv);
+    closeDiv.style.display='none';
   }
 };
 
@@ -91,7 +106,5 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 export{
-  insertMessage,
-  disableDiv,
-  confirmMessage
+  insertMessage
 }
